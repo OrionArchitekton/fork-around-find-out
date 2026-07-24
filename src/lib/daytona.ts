@@ -99,7 +99,21 @@ function observerScript(command: string, workspace: string): string {
   const shimBody = [
     "#!/bin/sh",
     'for a in "$@"; do echo "$a" | grep -oE "(([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}|([0-9]{1,3}\\.){3}[0-9]{1,3})(:[0-9]+)?" >> /tmp/faafo/egress.log; done',
-    'for a in "$@"; do case "$a" in @?*) f=${a#@}; [ -f "$f" ] && cat "$f" >> /tmp/faafo/payload.log 2>/dev/null;; esac; done',
+    // File-valued arguments come in more shapes than "@file". curl's form
+    // syntax reads a file with either `field=@path` or `field=<path`, and a
+    // bare `@path` covers --data/@file. Miss one and a secret leaves in a
+    // request body without ever being attributed as a secret read: the gate
+    // then only sees unapproved egress and quarantines what should be blocked.
+    'for a in "$@"; do',
+    '  case "$a" in',
+    '    @?*)   f=${a#@} ;;',
+    '    *=@*)  f=${a#*=@} ;;',
+    '    *=\\<*) f=${a#*=<} ;;',
+    '    \\<?*)  f=${a#<} ;;',
+    '    *)     f="" ;;',
+    "  esac",
+    '  [ -n "$f" ] && [ -f "$f" ] && cat "$f" >> /tmp/faafo/payload.log 2>/dev/null',
+    "done",
     // Drain a genuine pipe so the payload is captured and the writer does not
     // block. Guarding on `-p` matters: with no stdin at all, reading here would
     // consume the observer script's own stdin and swallow the rest of it.
