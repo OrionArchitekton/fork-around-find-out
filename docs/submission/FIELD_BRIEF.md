@@ -22,20 +22,20 @@ is a property of the whole category, not a FAAFO weakness. Do not get defensive 
 
 ## Sponsor lanes, honestly
 
-**Best Daytona** — your strongest lane but NOT a lock. **Ovehacked** (6 concurrent sandboxes in
+**Best Daytona**: your strongest lane but NOT a lock. **Ovehacked** (6 concurrent sandboxes in
 ~1.5s, per-agent isolation) is a harder Daytona workload than your serial cold-seed, and
 **SafeCommit** ships a custom pre-baked MySQL snapshot. Your claim: Daytona is the *decision
 substrate*, not a compute pool. Every verdict prints the id of the sandbox it was measured in,
 and if no sandbox can be created the action is BLOCKED, never guessed. Isolation is load-bearing
 for correctness, not just parallelism.
 
-**Best Braintrust** — you are NOT the deepest here. ForkLab (root trace + 8 child spans + 3 eval
+**Best Braintrust**: you are NOT the deepest here. ForkLab (root trace + 8 child spans + 3 eval
 suites), SafeCommit, Katena, and Significance Layer all use more native Braintrust surface than
 your `initLogger` path. Your honest edge: you *read the rows back out of the API* and committed
 them as evidence, so the catch-rate is auditable rather than asserted. Lead with auditability,
 not depth, and do not claim to be the deepest integration.
 
-**Best Fireworks** — Test with Kevin and SafeCommit are ahead. Do not chase it.
+**Best Fireworks**: Test with Kevin and SafeCommit are ahead. Do not chase it.
 
 ## Q&A landmines (they WILL ask these)
 
