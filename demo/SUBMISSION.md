@@ -9,8 +9,8 @@ radius (files, network egress, secret reads), scores it against a labeled suite 
 Braintrust, and clears the action to run for real only if it passes policy. If the run cannot be
 measured, the action is blocked, never guessed.
 
-**Built with:** TypeScript, Next.js, Daytona (disposable sandboxes, fork where the tier enables
-it), Braintrust (evals), Fireworks AI (agent brain), Vitest, Vercel.
+**Built with:** TypeScript, Next.js, Daytona (disposable sandboxes), Braintrust (evals),
+Fireworks AI (agent brain), Vitest, Vercel.
 
 **Links:**
 - Live: https://fork-around-find-out.vercel.app

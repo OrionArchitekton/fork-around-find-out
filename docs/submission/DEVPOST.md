@@ -56,10 +56,13 @@ Same engine, opposite verdicts, decided on evidence rather than on how alarming 
 
 **Key technical architecture.**
 - **Speculative execution in a disposable world.** Each proposed action runs in its own
-  throwaway Daytona sandbox, seeded with a copy of the agent's world and destroyed immediately
-  after. Where the account tier enables Daytona's sandbox *fork* primitive, FAAFO forks a warm
-  base instead of cold-seeding: faster, identical in safety. If no disposable world can be
-  created, the action is blocked, never guessed.
+  throwaway Daytona sandbox, seeded with a representative workspace fixture (source files, a
+  `.env` carrying a canary honeytoken, a dependency tree, and state outside the workspace) and
+  destroyed immediately after. Where the account tier enables Daytona's sandbox *fork*
+  primitive, FAAFO forks that seeded base rather than running in it directly; both paths are
+  throwaway worlds and identical in safety. On this account tier forking is unavailable, so the
+  live demo cold-seeds one sandbox per action. If no disposable world can be created at all,
+  the action is blocked, never guessed.
 - **Blast-radius measurement.** The run is diffed into a structured reading: files
   created/modified/deleted, network egress (captured by a PATH shim over `curl`/`wget`/`nc`,
   including IP-literal targets), and secret reads detected by a canary honeytoken seeded into
@@ -93,9 +96,9 @@ it.
 
 **Sponsor tools.** We went deep on the three sponsors where the safety story is load-bearing
 rather than shallow on six.
-- **Daytona**: the core primitive. Every action executes in a disposable Daytona sandbox
-  (forked from a warm base where the tier enables it); file blast radius, exit code, and
-  canary-based secret reads are measured on the real sandbox. `src/lib/daytona.ts`.
+- **Daytona**: the core primitive. Every action executes in its own disposable Daytona
+  sandbox, destroyed immediately after; file blast radius, exit code, and canary-based secret
+  reads are measured on the real sandbox. `src/lib/daytona.ts`.
 - **Braintrust**: the verification leg. Gate decisions are scored against the labeled suite and
   the scored rows are logged to a Braintrust project. `src/lib/braintrust.ts`.
 - **Fireworks AI**: the agent brain that proposes actions from a natural-language task.

@@ -119,17 +119,18 @@ export default async function Home({
       <div className="foot">
         <p>
           <b>How it works.</b> An agent proposes a shell action. Instead of running it, the
-          gateway spins up a disposable Daytona sandbox seeded with a copy of the agent&apos;s
-          world, runs the action there, and measures what it did: files created/modified/deleted,
+          gateway spins up a disposable Daytona sandbox seeded with a stand-in for the
+          agent&apos;s world, runs the action there, and measures what it did: files created/modified/deleted,
           network egress, and whether it read a seeded secret honeytoken (caught even when the
           secret is sent in a request body, not just echoed to stdout). A{" "}
           <code className="inline">fail-closed</code> policy engine turns that blast radius into{" "}
           <code className="inline">ALLOW</code> / <code className="inline">QUARANTINE</code> /{" "}
           <code className="inline">BLOCK</code>. Only an <code className="inline">ALLOW</code> is
           cleared to run for real; if the world cannot be measured, the action is blocked, never
-          guessed. Where the account tier enables Daytona&apos;s sandbox <i>fork</i> primitive the
-          gateway forks a warm base instead of cold-seeding, which is faster and identical in
-          safety; the throwaway world is destroyed either way.
+          guessed. The world is seeded with a representative workspace fixture, and where the account
+          tier enables Daytona&apos;s sandbox <i>fork</i> primitive the gateway forks that seeded
+          base rather than running in it directly. Either way the throwaway world is destroyed
+          straight after.
         </p>
         <p>
           <b>The near-misses are the point.</b> A pattern-matching guardrail blocks{" "}

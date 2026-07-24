@@ -11,10 +11,12 @@ it in a disposable copy of the world and watch what it actually does.**
 Fork Around & Find Out (FAAFO) is a fail-closed decision gateway for agent tool-calls:
 
 1. An agent proposes an action (a shell command).
-2. Instead of running it for real, the gateway spins up a **disposable Daytona sandbox** seeded
-   with a copy of the workspace and runs the action **there**. Where the account tier enables
-   Daytona's sandbox *fork* primitive, it forks a warm base instead of cold-seeding: faster,
-   and identical in safety.
+2. Instead of running it for real, the gateway spins up a **disposable Daytona sandbox**,
+   seeded with a representative workspace fixture, and runs the action **there**. Where the
+   account tier enables Daytona's sandbox *fork* primitive, it forks that seeded base rather
+   than running in it directly; both paths are throwaway worlds and identical in safety. On the
+   tier this was built against, forking is unavailable, so each action gets its own fresh
+   sandbox.
 3. We measure the exact **blast radius**: files created / modified / deleted, network egress,
    and whether the action read a seeded secret honeytoken (caught even when the secret is sent
    in a request *body*, not just echoed to stdout).
@@ -47,9 +49,8 @@ rule, and the others, are *data*, so the demo shows you the exact rule that fire
 ## Sponsor stack
 
 - **Daytona** is the disposable world. Every action executes in its own throwaway sandbox
-  ([`src/lib/daytona.ts`](src/lib/daytona.ts)), forked from a warm base where the account tier
-  enables Daytona's fork primitive and cold-seeded where it does not. File blast radius, exit
-  code, and canary-based secret reads are measured on the real sandbox.
+  ([`src/lib/daytona.ts`](src/lib/daytona.ts)), destroyed immediately after. File blast radius,
+  exit code, and canary-based secret reads are measured on the real sandbox.
 - **Braintrust** is the verification leg. The gate's decisions are scored against the labeled
   attack suite, and each scored row is logged to a Braintrust project
   ([`src/lib/braintrust.ts`](src/lib/braintrust.ts)).
@@ -79,7 +80,7 @@ Honesty matters here, so the boundary is explicit:
   both `@file` arguments and piped stdin, so a secret sent in a request body is caught, not just
   one echoed to stdout. Network egress is captured for standard tools (`curl`/`wget`/`nc`) via a
   PATH shim that logs the target host, not a kernel-level tap. If no disposable world can be
-  created, the run fails closed (`BLOCK`), never silently running somewhere real.
+  created at all, the run fails closed (`BLOCK`), never silently running somewhere real.
 
   The whole labeled suite was re-measured live on real Daytona sandboxes on 2026-07-24:
   **10/10 correct, about one second per action.** Reproduce with
