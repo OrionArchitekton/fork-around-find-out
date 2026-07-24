@@ -56,6 +56,12 @@ export default function GateConsole({
   async function propose() {
     if (!task.trim()) return;
     setBusy(true);
+    // Clear the previous verdict first. Otherwise the panel keeps showing the
+    // result for the action you clicked a moment ago while a DIFFERENT,
+    // model-proposed command is being gated, and then silently swaps it, which
+    // reads as the gate changing its mind about the same command.
+    setResult(null);
+    setSuite(null);
     setNote("Agent brain is proposing an action…");
     try {
       const res = await fetch("/api/propose", {

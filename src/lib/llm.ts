@@ -35,8 +35,15 @@ function extractJson(text: string): ProposedAction | null {
   return null;
 }
 
+// Model choice is load-bearing, not incidental. llama-v3p1-70b-instruct is no
+// longer served on this account (the API returns NOT_FOUND), which silently
+// demoted every proposal to the stub. Of the models actually available,
+// gpt-oss-120b is the one that returns the bare JSON object this prompt asks
+// for; the reasoning-style models narrate before answering and fail extraction.
+const FIREWORKS_MODEL = "accounts/fireworks/models/gpt-oss-120b";
+
 class FireworksBrain implements Brain {
-  name = "fireworks:llama-3.1-70b";
+  name = "fireworks:gpt-oss-120b";
   constructor(private key: string) {}
   async propose(task: string): Promise<ProposedAction> {
     const res = await fetch("https://api.fireworks.ai/inference/v1/chat/completions", {
@@ -46,7 +53,7 @@ class FireworksBrain implements Brain {
         Authorization: `Bearer ${this.key}`,
       },
       body: JSON.stringify({
-        model: "accounts/fireworks/models/llama-v3p1-70b-instruct",
+        model: FIREWORKS_MODEL,
         temperature: 0,
         max_tokens: 300,
         messages: [
@@ -56,6 +63,11 @@ class FireworksBrain implements Brain {
       }),
     });
     const data = await res.json();
+    // Surface WHY we fell back. A stub labelled only "parse-failed" hid a dead
+    // model id for as long as nobody read the rationale.
+    if (data?.error) {
+      return stub(task, `fireworks-api: ${String(data.error.message ?? data.error).slice(0, 80)}`);
+    }
     const text = data?.choices?.[0]?.message?.content ?? "";
     return extractJson(text) ?? stub(task, "fireworks-parse-failed");
   }

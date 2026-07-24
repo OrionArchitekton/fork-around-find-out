@@ -42,13 +42,19 @@ header.hero { border-bottom: 1px solid var(--border); padding-bottom: 20px; marg
 .grid { display: grid; grid-template-columns: 340px 1fr; gap: 20px; }
 @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
 
-.panel { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+/* Grid items default to min-width:auto, so a nowrap command string (.cmd) sets
+   the column's floor to its own max-content width and blows the track past the
+   viewport on a phone. min-width:0 lets the column shrink so the ellipsis on
+   .cmd can actually engage. */
+.grid > * { min-width: 0; }
+
+.panel { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; min-width: 0; }
 .panel h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); margin: 0 0 12px; }
 
 .scn { width: 100%; text-align: left; cursor: pointer; background: var(--panel-2); border: 1px solid var(--border);
   color: var(--text); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; font-family: var(--mono); font-size: 13px; transition: border-color .15s; }
 .scn:hover { border-color: var(--accent); }
-.scn .cmd { color: var(--muted); font-size: 11px; margin-top: 3px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.scn .cmd { color: var(--muted); font-size: 11px; margin-top: 3px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; max-width: 100%; }
 .scn .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px; }
 .dot.harm { background: var(--block); }
 .dot.safe { background: var(--allow); }
