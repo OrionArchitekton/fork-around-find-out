@@ -61,7 +61,7 @@ rule, and the others, are *data*, so the demo shows you the exact rule that fire
 
 ```bash
 pnpm install
-pnpm test        # 34 unit tests over the policy engine, blast-radius diff, parser, gateway
+pnpm test        # 38 unit tests over the policy engine, blast-radius diff, parser, gateway
 pnpm dev         # http://localhost:3000
 ```
 

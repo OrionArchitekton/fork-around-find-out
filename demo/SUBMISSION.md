@@ -30,7 +30,7 @@ Fireworks AI (agent brain), Vitest, Vercel.
 - **Decide-only gateway.** FAAFO returns ALLOW / QUARANTINE / BLOCK measured in a disposable
   world. Wiring an ALLOW to the executor that runs it for real is the host application's job;
   FAAFO makes the decision safely before anything irreversible happens.
-- **Tests.** 34 unit tests over the policy engine, blast-radius diff, parser, and gateway, plus
+- **Tests.** 38 unit tests over the policy engine, blast-radius diff, parser, and gateway, plus
   live end-to-end tests against real Daytona sandboxes.
 
 ## Known limits (shipped as labeled rows, not hidden)
