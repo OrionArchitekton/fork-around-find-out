@@ -17,3 +17,7 @@ real Daytona runs and each prints the id of the sandbox it measured in.
 
 **5. `05-mobile.png`** (optional, only if the gallery has room)
 > The demo is usable on a phone, so a judge can check it from the floor.
+
+If the gallery allows a sixth, screenshot the Braintrust project rows
+(`docs/evidence/braintrust-rows.md` has the same data, read back from the API):
+> Every verdict scored against ground truth and logged to Braintrust, then read back out of the API to prove the rows are really there.

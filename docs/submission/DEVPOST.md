@@ -120,8 +120,14 @@ rather than shallow on six.
 - **Daytona**: the core primitive. Every action executes in its own disposable Daytona
   sandbox, destroyed immediately after; file blast radius, exit code, and canary-based secret
   reads are measured on the real sandbox. `src/lib/daytona.ts`.
-- **Braintrust**: the verification leg. Gate decisions are scored against the labeled suite and
-  the scored rows are logged to a Braintrust project. `src/lib/braintrust.ts`.
+- **Braintrust**: the verification leg, and the reason the catch-rate is a number rather than a
+  vibe. Every scenario's decision is scored against ground truth and the scored rows are logged
+  to the Braintrust project `fork-around-find-out` (org `orion apex`, project id
+  `8d5cf293-7c82-475a-a6c0-68668115b944`). We did not stop at "the SDK call returned ok": the
+  rows were **fetched back out of Braintrust through the API** and are reproduced verbatim in
+  [`docs/evidence/braintrust-rows.md`](https://github.com/OrionArchitekton/fork-around-find-out/blob/main/docs/evidence/braintrust-rows.md),
+  each with input action, verdict, expected verdict, and correctness. The file carries the exact
+  `curl` to reproduce the read-back. `src/lib/braintrust.ts`.
 - **Fireworks AI**: the agent brain that proposes actions from a natural-language task
   (`gpt-oss-120b`), running outside the sandbox by design. In one line: **Fireworks proposes
   the action, Daytona measures it, Braintrust scores the suite.** Worth trying live: type
