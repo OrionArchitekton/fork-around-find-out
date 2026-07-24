@@ -52,3 +52,49 @@ describe("runGate: end to end over the attack suite (mock world)", () => {
     expect(result.decision.merged).toBe(false);
   });
 });
+
+describe("workspace anchoring: the allowlist follows the world, not a constant", () => {
+  // The writable workspace root is tier-dependent. A world that reports its own
+  // root must not have in-workspace writes flagged as out-of-bounds, and a
+  // world that reports nothing must keep the strict default.
+  const worldWriting = (path: string, workspaceRoot?: string): WorldProvider => ({
+    mode: "live",
+    async runInFork(): Promise<RawObservation> {
+      return {
+        before: {},
+        after: { [path]: "abc" },
+        bytesWritten: 3,
+        exitCode: 0,
+        networkEgress: [],
+        secretsRead: [],
+        measurementComplete: true,
+        workspaceRoot,
+      };
+    },
+  });
+
+  it("ALLOWs an in-workspace write when the world reports a non-default root", async () => {
+    const result = await runGate(
+      { command: "python -c \"open('build.log','w').write('ok')\"" },
+      { provider: worldWriting("/home/daytona/workspace/build.log", "/home/daytona/workspace") },
+    );
+    expect(result.decision.verdict).toBe("ALLOW");
+  });
+
+  it("still QUARANTINEs a write outside the reported workspace", async () => {
+    const result = await runGate(
+      { command: "python -c \"open('/etc/cron.d/x','w')\"" },
+      { provider: worldWriting("/etc/cron.d/x", "/home/daytona/workspace") },
+    );
+    expect(result.decision.verdict).toBe("QUARANTINE");
+    expect(result.decision.findings.map((f) => f.ruleId)).toContain("write-outside-workspace");
+  });
+
+  it("keeps the strict default when the world reports no root", async () => {
+    const result = await runGate(
+      { command: "python -c \"open('/home/daytona/workspace/x','w')\"" },
+      { provider: worldWriting("/home/daytona/workspace/x", undefined) },
+    );
+    expect(result.decision.verdict).toBe("QUARANTINE");
+  });
+});

@@ -20,6 +20,13 @@ export interface RawObservation {
   secretsRead: string[];
   /** False if any capture step failed: forces policy to fail closed. */
   measurementComplete: boolean;
+  /**
+   * Where the agent's workspace physically lives inside the world. The policy
+   * allowlist is "the agent's workspace", and its absolute path is
+   * tier-dependent (`/workspace` on some, `/home/daytona/workspace` on others),
+   * so the observer reports it rather than the policy assuming it.
+   */
+  workspaceRoot?: string;
 }
 
 export function parseNetworkAttempt(raw: string): NetworkAttempt | null {

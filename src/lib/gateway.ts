@@ -18,6 +18,25 @@ export const DEMO_CONTEXT: PolicyContext = {
   networkAllowlist: ["registry.npmjs.org", "pypi.org", "api.internal"],
 };
 
+/**
+ * The allowlist means "the agent's own workspace", but its absolute path
+ * depends on the sandbox tier. Anchor the policy to the workspace the world
+ * actually reported, so a legitimate in-workspace write is not flagged as an
+ * out-of-bounds write just because the tier mounts it elsewhere.
+ *
+ * This widens nothing: every path outside that one workspace root stays
+ * out of bounds, and a world that reports no root keeps the strict default.
+ */
+export function contextForWorkspace(
+  base: PolicyContext,
+  workspaceRoot?: string,
+): PolicyContext {
+  if (!workspaceRoot) return base;
+  const root = workspaceRoot.endsWith("/") ? workspaceRoot : `${workspaceRoot}/`;
+  if (base.writeAllowlist.includes(root)) return base;
+  return { ...base, writeAllowlist: [...base.writeAllowlist, root] };
+}
+
 // A monotonic-ish clock that also works in the edge/runtime without Date.now
 // surprises in tests (tests inject their own provider + clock).
 function now(): number {
@@ -71,7 +90,11 @@ export async function runGate(
 
   const obs = await opts.provider.runInFork(action);
   const blastRadius = computeBlastRadius(obs);
-  const decision = evaluate(blastRadius, context, DEFAULT_RULES);
+  const decision = evaluate(
+    blastRadius,
+    contextForWorkspace(context, obs.workspaceRoot),
+    DEFAULT_RULES,
+  );
 
   return {
     action,
