@@ -102,6 +102,9 @@ export async function runGate(
     decision,
     elapsedMs: Math.round(now() - started),
     mode: opts.provider.mode,
+    world: obs.worldId || obs.isolation
+      ? { id: obs.worldId || undefined, isolation: obs.isolation }
+      : undefined,
   };
 }
 

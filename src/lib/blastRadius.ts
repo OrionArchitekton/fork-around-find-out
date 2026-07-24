@@ -27,6 +27,10 @@ export interface RawObservation {
    * so the observer reports it rather than the policy assuming it.
    */
   workspaceRoot?: string;
+  /** Identifier of the disposable world the action ran in (live mode). */
+  worldId?: string;
+  /** How isolation was obtained: a fork of a warm base, or a fresh sandbox. */
+  isolation?: "fork" | "fresh-world";
 }
 
 export function parseNetworkAttempt(raw: string): NetworkAttempt | null {

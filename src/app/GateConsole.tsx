@@ -177,9 +177,21 @@ export default function GateConsole({
                 {v === "ALLOW" ? "✓ ALLOW: cleared to run for real" : v === "QUARANTINE" ? "❖ QUARANTINE: held for review" : "✕ BLOCK: killed in the fork"}
               </div>
               <div className="sub">
-                {result.mode === "live"
-                  ? "Measured on a real Daytona sandbox. "
-                  : "Measured in the deterministic mock world. "}
+                {result.mode === "live" ? (
+                  <>
+                    Measured on a real Daytona sandbox
+                    {result.world?.id ? (
+                      <>
+                        {" "}
+                        <code className="inline">{result.world.id.slice(0, 8)}</code>
+                      </>
+                    ) : null}
+                    {result.world?.isolation === "fork" ? " (forked from a warm base)" : ""}, created
+                    and destroyed for this one action.{" "}
+                  </>
+                ) : (
+                  "Measured in the deterministic mock world. "
+                )}
                 {result.decision.merged
                   ? "Clean blast radius, so it would be cleared to run for real."
                   : "The real world was never touched."}{" "}

@@ -1,7 +1,7 @@
 import GateConsole from "./GateConsole";
 import { SCENARIOS, scenarioById } from "@/lib/scenarios";
 import { loadConfig, worldMode } from "@/lib/config";
-import { runGate } from "@/lib/gateway";
+import { runGate, runGateFromEnv } from "@/lib/gateway";
 import { MockProvider } from "@/lib/daytona";
 import { scoreDecision, summarize } from "@/lib/braintrust";
 import type { GateResult } from "@/lib/types";
@@ -36,18 +36,23 @@ async function suiteStat() {
 export default async function Home({
   searchParams,
 }: {
-  searchParams: Promise<{ demo?: string }>;
+  searchParams: Promise<{ demo?: string; live?: string }>;
 }) {
   const cfg = loadConfig();
   const mode = worldMode(cfg);
   const params = await searchParams;
 
+  // ?live=1 measures the scenario on a REAL Daytona sandbox during SSR, so the
+  // finished page carries live evidence (sandbox id, real paths, real timing)
+  // with no client round-trip. Opt-in: the default render stays deterministic
+  // so the page is fast and identical on every load.
+  const wantLive = params.live === "1" && mode === "live";
   const scn = scenarioById(params.demo ?? "exfil-curl-env") ?? SCENARIOS[0];
-  const initialResult: GateResult = await runGate(scn.action, {
-    provider: new MockProvider(),
-  });
-  const suite = await suiteStat();
+  const initialResult: GateResult = wantLive
+    ? await runGateFromEnv(scn.action, cfg)
+    : await runGate(scn.action, { provider: new MockProvider() });
   const harmful = SCENARIOS.filter((s) => s.harmful).length;
+  const suite = await suiteStat();
 
   const wired = {
     daytona: Boolean(cfg.daytonaKey),
@@ -67,8 +72,11 @@ export default async function Home({
           ones die in that throwaway world, having touched nothing real.
         </p>
         <div className="badges">
+          {/* Counts beat a percentage here: "100%" over a small suite reads as
+              a vanity stat, and the near-misses are the interesting part. */}
           <span className="badge on">
-            {Math.round(suite.catchRate * 100)}% of attacks caught · {suite.correct}/{suite.total} correct
+            {suite.correct}/{suite.total} correct · {harmful} attacks, {SCENARIOS.length - harmful} benign
+            near-misses
           </span>
           <span className="badge">fail-closed</span>
           <span className={`badge ${wired.daytona ? "on" : ""}`}>Daytona sandbox</span>
@@ -117,9 +125,21 @@ export default async function Home({
           safety; the throwaway world is destroyed either way.
         </p>
         <p>
-          Every verdict is scored against a labeled attack suite ({SCENARIOS.length} scenarios,{" "}
-          {harmful} harmful) and logged to a Braintrust project: a real catch-rate, not a vibe.
-          Built at Daytona HackSprint #5.{" "}
+          <b>The near-misses are the point.</b> A pattern-matching guardrail blocks{" "}
+          <code className="inline">rm {"-rf"} ./node_modules</code> on sight, and a keyword filter
+          blocks any command mentioning <code className="inline">.env</code>. FAAFO runs both and
+          measures: one only removed files inside the workspace, the other shipped a secret to an
+          unknown host. It clears the first and blocks the second. Guessing from text cannot
+          separate those; measuring can.
+        </p>
+        <p>
+          Every verdict is scored against a labeled suite ({SCENARIOS.length} scenarios,{" "}
+          {harmful} harmful) and logged to a Braintrust project. The full suite was also
+          re-measured on real Daytona sandboxes on 2026-07-24:{" "}
+          <b>
+            {SCENARIOS.length}/{SCENARIOS.length} correct, about a second per action
+          </b>
+          , so the score above is not a mock-only result. Built at Daytona HackSprint #5.{" "}
           <a href="https://github.com/OrionArchitekton/fork-around-find-out">Source →</a>
         </p>
       </div>

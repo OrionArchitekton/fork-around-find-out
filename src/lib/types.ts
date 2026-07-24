@@ -74,4 +74,10 @@ export interface GateResult {
   elapsedMs: number;
   /** Whether the fork ran on a live Daytona sandbox or the deterministic mock. */
   mode: "live" | "mock";
+  /**
+   * Evidence about the disposable world, shown in the UI so a live run is
+   * verifiable on sight (a sandbox id nobody can fake from a mock) rather
+   * than something the page merely asserts.
+   */
+  world?: { id?: string; isolation?: "fork" | "fresh-world" };
 }
