@@ -31,6 +31,12 @@ export interface RawObservation {
   worldId?: string;
   /** How isolation was obtained: a fork of a warm base, or a fresh sandbox. */
   isolation?: "fork" | "fresh-world";
+  /**
+   * True when a network call was intercepted rather than performed, so the
+   * command's control flow diverged from what it would do for real and
+   * anything downstream of that call went unmeasured.
+   */
+  executionTruncated?: boolean;
 }
 
 export function parseNetworkAttempt(raw: string): NetworkAttempt | null {
@@ -87,5 +93,6 @@ export function computeBlastRadius(obs: RawObservation): BlastRadius {
     // If the caller could not fully observe the run, the measurement is
     // incomplete regardless of what partial data came back.
     measurementComplete: obs.measurementComplete === true,
+    executionTruncated: obs.executionTruncated === true,
   };
 }

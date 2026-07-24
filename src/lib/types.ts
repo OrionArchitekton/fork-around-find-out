@@ -34,6 +34,12 @@ export interface BlastRadius {
   /** Known-sensitive paths the command read (seeded honeytokens in the demo). */
   secretsRead: string[];
   measurementComplete: boolean;
+  /**
+   * A network call was intercepted rather than performed, so the command's
+   * control flow diverged from reality and anything downstream of that call
+   * went unmeasured. An action cannot be cleared on such a reading.
+   */
+  executionTruncated?: boolean;
 }
 
 /** A single policy rule evaluated against a BlastRadius. */

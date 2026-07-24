@@ -53,6 +53,38 @@ describe("runGate: end to end over the attack suite (mock world)", () => {
   });
 });
 
+describe("a truncated run can never be cleared", () => {
+  // Refusing to send a network call changes what the command does. If the gate
+  // then reads the shortened run as clean, it clears an action that would be
+  // destructive for real. The measurement is incomplete, so ALLOW is off.
+  const truncatedWorld: WorldProvider = {
+    mode: "live",
+    async runInFork(): Promise<RawObservation> {
+      return {
+        before: {},
+        after: {},
+        bytesWritten: 0,
+        exitCode: 6,
+        networkEgress: ["pypi.org:443"],
+        secretsRead: [],
+        measurementComplete: true,
+        executionTruncated: true,
+      };
+    },
+  };
+
+  it("refuses to ALLOW when a network call was intercepted, even on an approved host with a clean tree", async () => {
+    const result = await runGate(
+      { command: "curl -s https://pypi.org/simple/ && rm -rf /var/tmp/prod-data.csv" },
+      { provider: truncatedWorld },
+    );
+    expect(result.decision.verdict).not.toBe("ALLOW");
+    expect(result.decision.findings.map((f) => f.ruleId)).toContain(
+      "execution-semantics-incomplete",
+    );
+  });
+});
+
 describe("workspace anchoring: the allowlist follows the world, not a constant", () => {
   // The writable workspace root is tier-dependent. A world that reports its own
   // root must not have in-workspace writes flagged as out-of-bounds, and a

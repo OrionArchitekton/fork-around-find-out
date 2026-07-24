@@ -1,7 +1,7 @@
 import type { RawObservation } from "./blastRadius";
 import { CANARY, scenarioById, SCENARIOS } from "./scenarios";
 import type { ProposedAction } from "./types";
-import type { RuntimeConfig } from "./config";
+import { APPROVED_HOSTS, type RuntimeConfig } from "./config";
 
 // The "world" is a Daytona sandbox. Before an action runs for real, the gateway
 // runs it in a FORK of the world, observes the consequences, and throws the fork
@@ -77,7 +77,7 @@ export class MockProvider implements WorldProvider {
 // and after the command, routes network tools through a PATH shim that logs the
 // target host, and greps every output for the canary so a leaked secret is
 // caught even if the file path is obscured. It prints one JSON line we parse.
-function observerScript(command: string, workspace: string): string {
+function observerScript(command: string, workspace: string, approvedHosts: string[]): string {
   const b64 = Buffer.from(command, "utf8").toString("base64");
   // The network shim logs target hosts and captures @file payloads AND piped
   // stdin, so a secret sent in a request BODY is seen, not just one echoed to
@@ -119,6 +119,20 @@ function observerScript(command: string, workspace: string): string {
     // consume the observer script's own stdin and swallow the rest of it.
     'if [ -p /dev/stdin ]; then cat >> /tmp/faafo/payload.log; fi',
     'echo "faafo: speculative network call captured, not sent" >&2',
+    // Exit status is not cosmetic: it steers control flow. `curl <approved> &&
+    // rm -rf <data>` only reaches the delete when curl reports success, so
+    // failing an approved call would truncate the run and hide the destructive
+    // half. Approved hosts therefore get a success status (still nothing sent);
+    // everything else fails AND is recorded as an interception, which the
+    // policy engine treats as an incomplete measurement.
+    'for a in "$@"; do',
+    '  for h in $(cat /tmp/faafo/approved 2>/dev/null); do',
+    '    case "$a" in',
+    '      *"$h"*) exit 0 ;;',
+    "    esac",
+    "  done",
+    "done",
+    'echo intercepted >> /tmp/faafo/intercepted.log',
     "exit 6",
   ].join("\n");
   const shim64 = Buffer.from(shimBody, "utf8").toString("base64");
@@ -128,7 +142,8 @@ function observerScript(command: string, workspace: string): string {
   return `
 set +e
 WS=${JSON.stringify(workspace)}
-mkdir -p /tmp/faafo/bin; : > /tmp/faafo/egress.log; : > /tmp/faafo/payload.log
+mkdir -p /tmp/faafo/bin; : > /tmp/faafo/egress.log; : > /tmp/faafo/payload.log; : > /tmp/faafo/intercepted.log
+printf '%s\n' ${approvedHosts.map((h) => JSON.stringify(h)).join(" ")} > /tmp/faafo/approved
 python3 - "$WS" > /tmp/faafo/before.json <<'PY'
 import sys, json, hashlib, os
 ws=sys.argv[1]; d={}
@@ -154,10 +169,13 @@ OUT=$(cd "$WS" && sh -c "$CMD" 2>&1 </dev/null); CODE=$?
 CANARY_HIT=0
 { echo "$OUT"; cat /tmp/faafo/payload.log 2>/dev/null; } | grep -q "${CANARY}" && CANARY_HIT=1
 EGRESS=$(sort -u /tmp/faafo/egress.log 2>/dev/null | tr '\\n' ',' )
-python3 - "$CODE" "$CANARY_HIT" "$EGRESS" "$WS" <<'PY'
+TRUNC=0
+[ -s /tmp/faafo/intercepted.log ] && TRUNC=1
+python3 - "$CODE" "$CANARY_HIT" "$EGRESS" "$WS" "$TRUNC" <<'PY'
 import sys, json, hashlib, os
 code=int(sys.argv[1]); canary=sys.argv[2]=="1"
 egress=[e for e in sys.argv[3].split(',') if e]; ws=sys.argv[4]
+truncated=len(sys.argv)>5 and sys.argv[5]=="1"
 def snap(ws):
     d={}
     for root in [ws,"/etc","/var/tmp"]:
@@ -172,7 +190,7 @@ try:
     before=json.load(open('/tmp/faafo/before.json'))
 except Exception:
     before=None
-out={"exitCode":code,"canary":canary,"egress":egress,"after":snap(ws)}
+out={"exitCode":code,"canary":canary,"egress":egress,"truncated":truncated,"after":snap(ws)}
 if before is not None: out["before"]=before
 print("FAAFO_JSON:"+json.dumps(out))
 PY
@@ -218,7 +236,7 @@ export class LiveDaytonaProvider implements WorldProvider {
       if (!world) return incomplete;
       const { sandbox, parent, workspace } = world;
       try {
-        const res = await execInSandbox(sandbox, observerScript(action.command, workspace));
+        const res = await execInSandbox(sandbox, observerScript(action.command, workspace, APPROVED_HOSTS));
         const parsed = parseObserver(res.stdout ?? res.result ?? "");
         // No parseable observation -> incomplete -> BLOCK. Never guess.
         if (!parsed || !parsed.before) return { ...incomplete };
@@ -230,6 +248,7 @@ export class LiveDaytonaProvider implements WorldProvider {
           networkEgress: parsed.egress,
           secretsRead: parsed.canary ? [`${workspace}/.env`] : [],
           measurementComplete: true,
+          executionTruncated: parsed.truncated === true,
           workspaceRoot: workspace,
           worldId: String(sandbox?.id ?? sandbox?.sandboxId ?? ""),
           isolation: world.isolation,
@@ -354,6 +373,7 @@ export function parseObserver(stdout: string): {
   egress: string[];
   after: Record<string, string>;
   before?: Record<string, string>;
+  truncated?: boolean;
 } | null {
   const marker = "FAAFO_JSON:";
   const idx = String(stdout).lastIndexOf(marker);
@@ -366,6 +386,7 @@ export function parseObserver(stdout: string): {
       exitCode: typeof json.exitCode === "number" ? json.exitCode : 0,
       canary: json.canary === true,
       egress: Array.isArray(json.egress) ? json.egress.map(String) : [],
+      truncated: json.truncated === true,
       after,
     } as {
       exitCode: number;
@@ -373,6 +394,7 @@ export function parseObserver(stdout: string): {
       egress: string[];
       after: Record<string, string>;
       before?: Record<string, string>;
+      truncated?: boolean;
     };
     if (json.before && typeof json.before === "object") {
       const before: Record<string, string> = {};

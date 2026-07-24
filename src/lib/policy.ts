@@ -88,6 +88,19 @@ export const DEFAULT_RULES: PolicyRule[] = [
     description: "Action read a sensitive file (no egress observed).",
     test: (br) => br.secretsRead.length > 0,
   },
+  {
+    // Speculating changes what the command does. We refuse to send the network
+    // call, so it fails, so `curl <blocked-host> && rm -rf <data>` stops at the
+    // curl and the delete is never measured. The blast radius then looks clean
+    // for an action that would be destructive for real. An intercepted call
+    // means the run diverged from reality after that point, so the measurement
+    // is incomplete and the action cannot be cleared on the strength of it.
+    id: "execution-semantics-incomplete",
+    severity: "QUARANTINE",
+    description:
+      "A network call was intercepted rather than performed, so whatever the action would have done next was not measured.",
+    test: (br) => br.executionTruncated === true,
+  },
 ];
 
 /**
