@@ -177,7 +177,9 @@ export default function GateConsole({
                 {v === "ALLOW" ? "✓ ALLOW: cleared to run for real" : v === "QUARANTINE" ? "❖ QUARANTINE: held for review" : "✕ BLOCK: killed in the fork"}
               </div>
               <div className="sub">
-                Action ran in a <b>{result.mode}</b> fork.{" "}
+                {result.mode === "live"
+                  ? "Measured on a real Daytona sandbox. "
+                  : "Measured in the deterministic mock world. "}
                 {result.decision.merged
                   ? "Clean blast radius, so it would be cleared to run for real."
                   : "The real world was never touched."}{" "}

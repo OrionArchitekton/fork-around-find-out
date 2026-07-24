@@ -62,29 +62,41 @@ export default async function Home({
         <h1>Fork Around &amp; Find Out</h1>
         <p className="tag">
           <span className="hook">Your agent&apos;s next action happens in a parallel universe first.</span>{" "}
-          Every risky tool-call runs in a forked Daytona sandbox, we measure the exact blast
+          Every risky tool-call runs in a disposable Daytona sandbox, we measure the exact blast
           radius, and only actions that clear policy are cleared to run for real. The dangerous
-          ones die in the fork, having touched nothing real.
+          ones die in that throwaway world, having touched nothing real.
         </p>
         <div className="badges">
           <span className="badge on">
             {Math.round(suite.catchRate * 100)}% of attacks caught · {suite.correct}/{suite.total} correct
           </span>
           <span className="badge">fail-closed</span>
-          <span className={`badge ${wired.daytona ? "on" : ""}`}>Daytona fork</span>
+          <span className={`badge ${wired.daytona ? "on" : ""}`}>Daytona sandbox</span>
           <span className={`badge ${wired.braintrust ? "on" : ""}`}>Braintrust evals</span>
           <span className={`badge ${wired.fireworks ? "on" : ""}`}>Fireworks brain</span>
-          <span className={`badge ${mode === "live" ? "on" : "mock"}`}>
-            world: {mode}
+          {/* Bound to the RESULT on screen, never to the environment: this
+              first render is always the deterministic mock, even on a
+              live-keyed deploy. Claiming "live" here would be a lie. */}
+          <span className={`badge ${initialResult.mode === "live" ? "on" : "mock"}`}>
+            this result: {initialResult.mode}
           </span>
         </div>
-        {mode === "mock" && (
-          <p className="muted" style={{ fontSize: 12, marginTop: 8 }}>
-            Running the <b>mock world</b>: recorded real observations, run through the exact same
-            policy engine and blast-radius code as a live Daytona fork. Set a Daytona key to
-            measure on real forks.
-          </p>
-        )}
+        <p className="muted" style={{ fontSize: 12, marginTop: 8 }}>
+          {mode === "live" ? (
+            <>
+              The result below is the <b>deterministic mock world</b> so the page renders the same
+              way every time. Press <b>Run</b> and the action is measured on a{" "}
+              <b>real Daytona sandbox</b>, created and destroyed for that one action. Same policy
+              engine and blast-radius code either way; only the observation source differs.
+            </>
+          ) : (
+            <>
+              Running the <b>mock world</b>: recorded real observations, run through the exact same
+              policy engine and blast-radius code as a live Daytona sandbox. Set a Daytona key to
+              measure on real sandboxes.
+            </>
+          )}
+        </p>
       </header>
 
       <GateConsole scenarios={scenariosLite} initialResult={initialResult} />
@@ -92,14 +104,17 @@ export default async function Home({
       <div className="foot">
         <p>
           <b>How it works.</b> An agent proposes a shell action. Instead of running it, the
-          gateway forks a Daytona sandbox (filesystem state), runs the action in the fork, and
-          measures what it did: files created/modified/deleted, network egress, and whether it
-          read a seeded secret honeytoken (caught even when the secret is sent in a request
-          body). A <code className="inline">fail-closed</code> policy engine turns that blast
-          radius into <code className="inline">ALLOW</code> /{" "}
-          <code className="inline">QUARANTINE</code> / <code className="inline">BLOCK</code>. Only an{" "}
-          <code className="inline">ALLOW</code> is cleared to run for real; if the fork cannot be
-          measured, the action is blocked, never guessed.
+          gateway spins up a disposable Daytona sandbox seeded with a copy of the agent&apos;s
+          world, runs the action there, and measures what it did: files created/modified/deleted,
+          network egress, and whether it read a seeded secret honeytoken (caught even when the
+          secret is sent in a request body, not just echoed to stdout). A{" "}
+          <code className="inline">fail-closed</code> policy engine turns that blast radius into{" "}
+          <code className="inline">ALLOW</code> / <code className="inline">QUARANTINE</code> /{" "}
+          <code className="inline">BLOCK</code>. Only an <code className="inline">ALLOW</code> is
+          cleared to run for real; if the world cannot be measured, the action is blocked, never
+          guessed. Where the account tier enables Daytona&apos;s sandbox <i>fork</i> primitive the
+          gateway forks a warm base instead of cold-seeding, which is faster and identical in
+          safety; the throwaway world is destroyed either way.
         </p>
         <p>
           Every verdict is scored against a labeled attack suite ({SCENARIOS.length} scenarios,{" "}
