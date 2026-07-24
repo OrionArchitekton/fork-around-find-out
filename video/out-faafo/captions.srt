@@ -3,21 +3,21 @@
 This agent just read a secret and tried to beacon it out to an attacker. It happened inside a throwaway Daytona sandbox, so the real world never saw it. That is Fork Around and Find Out.
 
 2
-00:00:14,067 --> 00:00:31,343
-If you run Claude Code, Cursor, or any agent with shell access, one bad tool call is irreversible. A prompt injection, a hallucinated delete, a key posted to a pastebin. Today's guardrails read the command text and guess.
+00:00:14,067 --> 00:00:32,039
+If you run Claude Code, Cursor, or any agent with shell access, one bad tool call is irreversible. A prompt injection, a hallucinated delete, a key posted to a pastebin. Most of today's guardrails read the command text and guess.
 
 3
-00:00:31,433 --> 00:00:46,944
-FAAFO does not guess. It runs the action in a disposable copy of your world first, measures exactly what it touched, and only then decides. Think terraform plan, but for agent actions.
+00:00:32,100 --> 00:00:47,843
+FAAFO does not guess. It runs the action in a disposable stand-in for your world, measures what it actually touched, and only then decides. Think terraform plan, but for agent actions.
 
 4
-00:00:47,500 --> 00:01:06,726
-Here is the part that text matching gets wrong. A regex blocks this recursive delete on sight. We ran it, measured it, and every file it removed was inside the workspace. Cleared. The same engine that blocked the exfiltration clears the safe cleanup, because it measured instead of guessing.
+00:00:47,900 --> 00:01:07,776
+Here is the part that text matching gets wrong. A pattern matcher would block this recursive delete on sight. We ran it, measured it, and every file it removed was inside the workspace. Cleared. The same engine that blocked the exfiltration clears the safe cleanup, because it measured instead of guessing.
 
 5
-00:01:06,800 --> 00:01:30,160
-Every verdict is scored against a labeled suite and logged to Braintrust. Ten out of ten, and we re-ran the whole suite on real Daytona sandboxes at about a second per action. We also ship our own failure. Base64 hides the secret from our canary, so that row only quarantines instead of blocking. Fail closed, and say so.
+00:01:07,833 --> 00:01:32,261
+The labeled suite is scored end to end, and those scored rows log to Braintrust. Ten out of ten, and we re-ran the whole suite on real Daytona sandboxes at about a second per action. We also ship our own failure. Base64 hides the secret from our canary, so that row only quarantines instead of blocking. Fail closed, and say so.
 
 6
-00:01:30,233 --> 00:01:41,797
-Daytona for the disposable world, Braintrust for the proof, Fireworks for the agent brain. The dangerous actions die in the fork. Fork around, and find out.
+00:01:32,333 --> 00:01:43,293
+Daytona for the disposable world, Braintrust for the proof, Fireworks for the agent brain. The dangerous actions die in a throwaway sandbox. Fork around, and find out.

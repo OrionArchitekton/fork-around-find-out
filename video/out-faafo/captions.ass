@@ -62,190 +62,197 @@ Dialogue: 0,0:00:19.02,0:00:19.42,Pop,,0,0,0,,any agent with shell access, {\c&H
 Dialogue: 0,0:00:19.42,0:00:19.80,Pop,,0,0,0,,any agent with shell access, one {\c&H5252FF&}bad{\c&HFFFFFF&}
 Dialogue: 0,0:00:19.80,0:00:20.20,Pop,,0,0,0,,{\c&H5252FF&}tool{\c&HFFFFFF&}
 Dialogue: 0,0:00:20.20,0:00:20.67,Pop,,0,0,0,,tool {\c&H5252FF&}call{\c&HFFFFFF&}
-Dialogue: 0,0:00:20.67,0:00:20.90,Pop,,0,0,0,,tool call {\c&H5252FF&}is{\c&HFFFFFF&}
-Dialogue: 0,0:00:20.90,0:00:22.14,Pop,,0,0,0,,tool call is {\c&H5252FF&}irreversible.{\c&HFFFFFF&}
-Dialogue: 0,0:00:22.14,0:00:22.30,Pop,,0,0,0,,tool call is irreversible. {\c&H5252FF&}A{\c&HFFFFFF&}
-Dialogue: 0,0:00:22.30,0:00:22.67,Pop,,0,0,0,,tool call is irreversible. A {\c&H5252FF&}prompt{\c&HFFFFFF&}
-Dialogue: 0,0:00:22.67,0:00:23.61,Pop,,0,0,0,,tool call is irreversible. A prompt {\c&H5252FF&}injection,{\c&HFFFFFF&}
-Dialogue: 0,0:00:23.67,0:00:23.83,Pop,,0,0,0,,{\c&H5252FF&}a{\c&HFFFFFF&}
-Dialogue: 0,0:00:23.83,0:00:24.59,Pop,,0,0,0,,a {\c&H5252FF&}hallucinated{\c&HFFFFFF&}
-Dialogue: 0,0:00:24.59,0:00:25.36,Pop,,0,0,0,,a hallucinated {\c&H5252FF&}delete,{\c&HFFFFFF&}
-Dialogue: 0,0:00:25.36,0:00:25.53,Pop,,0,0,0,,a hallucinated delete, {\c&H5252FF&}a{\c&HFFFFFF&}
-Dialogue: 0,0:00:25.53,0:00:25.83,Pop,,0,0,0,,a hallucinated delete, a {\c&H5252FF&}key{\c&HFFFFFF&}
-Dialogue: 0,0:00:25.83,0:00:26.29,Pop,,0,0,0,,a hallucinated delete, a key {\c&H5252FF&}posted{\c&HFFFFFF&}
-Dialogue: 0,0:00:26.29,0:00:26.43,Pop,,0,0,0,,a hallucinated delete, a key posted {\c&H5252FF&}to{\c&HFFFFFF&}
-Dialogue: 0,0:00:26.43,0:00:26.51,Pop,,0,0,0,,{\c&H5252FF&}a{\c&HFFFFFF&}
-Dialogue: 0,0:00:26.51,0:00:27.65,Pop,,0,0,0,,a {\c&H5252FF&}pastebin.{\c&HFFFFFF&}
-Dialogue: 0,0:00:27.65,0:00:28.15,Pop,,0,0,0,,a pastebin. {\c&H5252FF&}Today's{\c&HFFFFFF&}
-Dialogue: 0,0:00:28.15,0:00:28.90,Pop,,0,0,0,,a pastebin. Today's {\c&H5252FF&}guardrails{\c&HFFFFFF&}
-Dialogue: 0,0:00:28.90,0:00:29.39,Pop,,0,0,0,,a pastebin. Today's guardrails {\c&H5252FF&}read{\c&HFFFFFF&}
-Dialogue: 0,0:00:29.39,0:00:29.59,Pop,,0,0,0,,a pastebin. Today's guardrails read {\c&H5252FF&}the{\c&HFFFFFF&}
-Dialogue: 0,0:00:29.59,0:00:30.04,Pop,,0,0,0,,a pastebin. Today's guardrails read the {\c&H5252FF&}command{\c&HFFFFFF&}
-Dialogue: 0,0:00:30.04,0:00:30.67,Pop,,0,0,0,,{\c&H5252FF&}text{\c&HFFFFFF&}
-Dialogue: 0,0:00:30.67,0:00:30.91,Pop,,0,0,0,,text {\c&H5252FF&}and{\c&HFFFFFF&}
-Dialogue: 0,0:00:30.91,0:00:31.43,Pop,,0,0,0,,text and {\c&H5252FF&}guess.{\c&HFFFFFF&}
-Dialogue: 0,0:00:31.43,0:00:32.79,Pop,,0,0,0,,{\c&H5252FF&}FAAFO{\c&HFFFFFF&}
-Dialogue: 0,0:00:32.79,0:00:33.04,Pop,,0,0,0,,FAAFO {\c&H5252FF&}does{\c&HFFFFFF&}
-Dialogue: 0,0:00:33.04,0:00:33.24,Pop,,0,0,0,,FAAFO does {\c&H5252FF&}not{\c&HFFFFFF&}
-Dialogue: 0,0:00:33.24,0:00:34.23,Pop,,0,0,0,,FAAFO does not {\c&H5252FF&}guess.{\c&HFFFFFF&}
-Dialogue: 0,0:00:34.23,0:00:34.44,Pop,,0,0,0,,FAAFO does not guess. {\c&H5252FF&}It{\c&HFFFFFF&}
-Dialogue: 0,0:00:34.44,0:00:34.81,Pop,,0,0,0,,FAAFO does not guess. It {\c&H5252FF&}runs{\c&HFFFFFF&}
-Dialogue: 0,0:00:34.81,0:00:34.99,Pop,,0,0,0,,FAAFO does not guess. It runs {\c&H5252FF&}the{\c&HFFFFFF&}
-Dialogue: 0,0:00:34.99,0:00:35.44,Pop,,0,0,0,,{\c&H5252FF&}action{\c&HFFFFFF&}
-Dialogue: 0,0:00:35.44,0:00:35.56,Pop,,0,0,0,,action {\c&H5252FF&}in{\c&HFFFFFF&}
-Dialogue: 0,0:00:35.56,0:00:35.64,Pop,,0,0,0,,action in {\c&H5252FF&}a{\c&HFFFFFF&}
-Dialogue: 0,0:00:35.64,0:00:36.36,Pop,,0,0,0,,action in a {\c&H5252FF&}disposable{\c&HFFFFFF&}
-Dialogue: 0,0:00:36.36,0:00:36.75,Pop,,0,0,0,,action in a disposable {\c&H5252FF&}copy{\c&HFFFFFF&}
-Dialogue: 0,0:00:36.75,0:00:36.86,Pop,,0,0,0,,action in a disposable copy {\c&H5252FF&}of{\c&HFFFFFF&}
-Dialogue: 0,0:00:36.86,0:00:37.03,Pop,,0,0,0,,action in a disposable copy of {\c&H5252FF&}your{\c&HFFFFFF&}
-Dialogue: 0,0:00:37.03,0:00:37.35,Pop,,0,0,0,,{\c&H5252FF&}world{\c&HFFFFFF&}
-Dialogue: 0,0:00:37.35,0:00:38.12,Pop,,0,0,0,,world {\c&H5252FF&}first,{\c&HFFFFFF&}
-Dialogue: 0,0:00:38.12,0:00:38.53,Pop,,0,0,0,,world first, {\c&H5252FF&}measures{\c&HFFFFFF&}
-Dialogue: 0,0:00:38.53,0:00:39.12,Pop,,0,0,0,,world first, measures {\c&H5252FF&}exactly{\c&HFFFFFF&}
-Dialogue: 0,0:00:39.12,0:00:39.29,Pop,,0,0,0,,world first, measures exactly {\c&H5252FF&}what{\c&HFFFFFF&}
-Dialogue: 0,0:00:39.29,0:00:39.40,Pop,,0,0,0,,world first, measures exactly what {\c&H5252FF&}it{\c&HFFFFFF&}
-Dialogue: 0,0:00:39.40,0:00:40.02,Pop,,0,0,0,,world first, measures exactly what it {\c&H5252FF&}touched,{\c&HFFFFFF&}
-Dialogue: 0,0:00:40.02,0:00:40.29,Pop,,0,0,0,,{\c&H5252FF&}and{\c&HFFFFFF&}
-Dialogue: 0,0:00:40.29,0:00:40.68,Pop,,0,0,0,,and {\c&H5252FF&}only{\c&HFFFFFF&}
-Dialogue: 0,0:00:40.68,0:00:40.97,Pop,,0,0,0,,and only {\c&H5252FF&}then{\c&HFFFFFF&}
-Dialogue: 0,0:00:40.97,0:00:42.93,Pop,,0,0,0,,and only then {\c&H5252FF&}decides.{\c&HFFFFFF&}
-Dialogue: 0,0:00:42.93,0:00:43.50,Pop,,0,0,0,,and only then decides. {\c&H5252FF&}Think{\c&HFFFFFF&}
-Dialogue: 0,0:00:43.50,0:00:44.25,Pop,,0,0,0,,and only then decides. Think {\c&H5252FF&}terraform{\c&HFFFFFF&}
-Dialogue: 0,0:00:44.25,0:00:45.03,Pop,,0,0,0,,and only then decides. Think terraform {\c&H5252FF&}plan,{\c&HFFFFFF&}
-Dialogue: 0,0:00:45.20,0:00:45.42,Pop,,0,0,0,,{\c&H5252FF&}but{\c&HFFFFFF&}
-Dialogue: 0,0:00:45.42,0:00:45.62,Pop,,0,0,0,,but {\c&H5252FF&}for{\c&HFFFFFF&}
-Dialogue: 0,0:00:45.62,0:00:46.05,Pop,,0,0,0,,but for {\c&H5252FF&}agent{\c&HFFFFFF&}
-Dialogue: 0,0:00:46.05,0:00:47.09,Pop,,0,0,0,,but for agent {\c&H5252FF&}actions.{\c&HFFFFFF&}
-Dialogue: 0,0:00:47.50,0:00:47.80,Pop,,0,0,0,,{\c&H5252FF&}Here{\c&HFFFFFF&}
-Dialogue: 0,0:00:47.80,0:00:47.93,Pop,,0,0,0,,Here {\c&H5252FF&}is{\c&HFFFFFF&}
-Dialogue: 0,0:00:47.93,0:00:48.05,Pop,,0,0,0,,Here is {\c&H5252FF&}the{\c&HFFFFFF&}
-Dialogue: 0,0:00:48.05,0:00:48.30,Pop,,0,0,0,,Here is the {\c&H5252FF&}part{\c&HFFFFFF&}
-Dialogue: 0,0:00:48.30,0:00:48.48,Pop,,0,0,0,,Here is the part {\c&H5252FF&}that{\c&HFFFFFF&}
-Dialogue: 0,0:00:48.48,0:00:48.91,Pop,,0,0,0,,Here is the part that {\c&H5252FF&}text{\c&HFFFFFF&}
-Dialogue: 0,0:00:48.91,0:00:49.33,Pop,,0,0,0,,Here is the part that text {\c&H5252FF&}matching{\c&HFFFFFF&}
-Dialogue: 0,0:00:49.33,0:00:49.59,Pop,,0,0,0,,{\c&H5252FF&}gets{\c&HFFFFFF&}
-Dialogue: 0,0:00:49.59,0:00:50.62,Pop,,0,0,0,,gets {\c&H5252FF&}wrong.{\c&HFFFFFF&}
-Dialogue: 0,0:00:50.62,0:00:50.82,Pop,,0,0,0,,gets wrong. {\c&H5252FF&}A{\c&HFFFFFF&}
-Dialogue: 0,0:00:50.82,0:00:51.45,Pop,,0,0,0,,gets wrong. A {\c&H5252FF&}regex{\c&HFFFFFF&}
-Dialogue: 0,0:00:51.45,0:00:51.87,Pop,,0,0,0,,gets wrong. A regex {\c&H5252FF&}blocks{\c&HFFFFFF&}
-Dialogue: 0,0:00:51.87,0:00:52.10,Pop,,0,0,0,,gets wrong. A regex blocks {\c&H5252FF&}this{\c&HFFFFFF&}
-Dialogue: 0,0:00:52.10,0:00:52.66,Pop,,0,0,0,,gets wrong. A regex blocks this {\c&H5252FF&}recursive{\c&HFFFFFF&}
-Dialogue: 0,0:00:52.66,0:00:53.07,Pop,,0,0,0,,{\c&H5252FF&}delete{\c&HFFFFFF&}
-Dialogue: 0,0:00:53.07,0:00:53.29,Pop,,0,0,0,,delete {\c&H5252FF&}on{\c&HFFFFFF&}
-Dialogue: 0,0:00:53.29,0:00:54.11,Pop,,0,0,0,,delete on {\c&H5252FF&}sight.{\c&HFFFFFF&}
-Dialogue: 0,0:00:54.11,0:00:54.35,Pop,,0,0,0,,delete on sight. {\c&H5252FF&}We{\c&HFFFFFF&}
-Dialogue: 0,0:00:54.35,0:00:54.65,Pop,,0,0,0,,delete on sight. We {\c&H5252FF&}ran{\c&HFFFFFF&}
-Dialogue: 0,0:00:54.65,0:00:55.11,Pop,,0,0,0,,delete on sight. We ran {\c&H5252FF&}it,{\c&HFFFFFF&}
-Dialogue: 0,0:00:55.11,0:00:55.53,Pop,,0,0,0,,delete on sight. We ran it, {\c&H5252FF&}measured{\c&HFFFFFF&}
-Dialogue: 0,0:00:55.53,0:00:55.99,Pop,,0,0,0,,{\c&H5252FF&}it,{\c&HFFFFFF&}
-Dialogue: 0,0:00:55.99,0:00:56.24,Pop,,0,0,0,,it, {\c&H5252FF&}and{\c&HFFFFFF&}
-Dialogue: 0,0:00:56.24,0:00:56.60,Pop,,0,0,0,,it, and {\c&H5252FF&}every{\c&HFFFFFF&}
-Dialogue: 0,0:00:56.60,0:00:56.96,Pop,,0,0,0,,it, and every {\c&H5252FF&}file{\c&HFFFFFF&}
-Dialogue: 0,0:00:56.96,0:00:57.08,Pop,,0,0,0,,it, and every file {\c&H5252FF&}it{\c&HFFFFFF&}
-Dialogue: 0,0:00:57.08,0:00:57.58,Pop,,0,0,0,,it, and every file it {\c&H5252FF&}removed{\c&HFFFFFF&}
-Dialogue: 0,0:00:57.58,0:00:57.79,Pop,,0,0,0,,it, and every file it removed {\c&H5252FF&}was{\c&HFFFFFF&}
-Dialogue: 0,0:00:57.79,0:00:58.27,Pop,,0,0,0,,{\c&H5252FF&}inside{\c&HFFFFFF&}
-Dialogue: 0,0:00:58.27,0:00:58.39,Pop,,0,0,0,,inside {\c&H5252FF&}the{\c&HFFFFFF&}
-Dialogue: 0,0:00:58.39,0:00:59.54,Pop,,0,0,0,,inside the {\c&H5252FF&}workspace.{\c&HFFFFFF&}
-Dialogue: 0,0:00:59.54,0:01:00.63,Pop,,0,0,0,,inside the workspace. {\c&H5252FF&}Cleared.{\c&HFFFFFF&}
-Dialogue: 0,0:01:00.63,0:01:00.81,Pop,,0,0,0,,inside the workspace. Cleared. {\c&H5252FF&}The{\c&HFFFFFF&}
-Dialogue: 0,0:01:00.81,0:01:01.14,Pop,,0,0,0,,inside the workspace. Cleared. The {\c&H5252FF&}same{\c&HFFFFFF&}
-Dialogue: 0,0:01:01.14,0:01:01.55,Pop,,0,0,0,,inside the workspace. Cleared. The same {\c&H5252FF&}engine{\c&HFFFFFF&}
-Dialogue: 0,0:01:01.55,0:01:01.71,Pop,,0,0,0,,{\c&H5252FF&}that{\c&HFFFFFF&}
-Dialogue: 0,0:01:01.71,0:01:02.05,Pop,,0,0,0,,that {\c&H5252FF&}blocked{\c&HFFFFFF&}
-Dialogue: 0,0:01:02.05,0:01:02.20,Pop,,0,0,0,,that blocked {\c&H5252FF&}the{\c&HFFFFFF&}
-Dialogue: 0,0:01:02.20,0:01:03.08,Pop,,0,0,0,,that blocked the {\c&H5252FF&}exfiltration{\c&HFFFFFF&}
-Dialogue: 0,0:01:03.08,0:01:03.46,Pop,,0,0,0,,that blocked the exfiltration {\c&H5252FF&}clears{\c&HFFFFFF&}
-Dialogue: 0,0:01:03.46,0:01:03.59,Pop,,0,0,0,,that blocked the exfiltration clears {\c&H5252FF&}the{\c&HFFFFFF&}
-Dialogue: 0,0:01:03.59,0:01:03.88,Pop,,0,0,0,,that blocked the exfiltration clears the {\c&H5252FF&}safe{\c&HFFFFFF&}
-Dialogue: 0,0:01:03.88,0:01:04.69,Pop,,0,0,0,,{\c&H5252FF&}cleanup,{\c&HFFFFFF&}
-Dialogue: 0,0:01:04.69,0:01:05.02,Pop,,0,0,0,,cleanup, {\c&H5252FF&}because{\c&HFFFFFF&}
-Dialogue: 0,0:01:05.02,0:01:05.12,Pop,,0,0,0,,cleanup, because {\c&H5252FF&}it{\c&HFFFFFF&}
-Dialogue: 0,0:01:05.12,0:01:05.52,Pop,,0,0,0,,cleanup, because it {\c&H5252FF&}measured{\c&HFFFFFF&}
-Dialogue: 0,0:01:05.52,0:01:05.86,Pop,,0,0,0,,cleanup, because it measured {\c&H5252FF&}instead{\c&HFFFFFF&}
-Dialogue: 0,0:01:05.86,0:01:05.96,Pop,,0,0,0,,cleanup, because it measured instead {\c&H5252FF&}of{\c&HFFFFFF&}
-Dialogue: 0,0:01:05.96,0:01:06.80,Pop,,0,0,0,,cleanup, because it measured instead of {\c&H5252FF&}guessing.{\c&HFFFFFF&}
-Dialogue: 0,0:01:06.80,0:01:07.21,Pop,,0,0,0,,{\c&H5252FF&}Every{\c&HFFFFFF&}
-Dialogue: 0,0:01:07.21,0:01:07.58,Pop,,0,0,0,,Every {\c&H5252FF&}verdict{\c&HFFFFFF&}
-Dialogue: 0,0:01:07.58,0:01:07.68,Pop,,0,0,0,,Every verdict {\c&H5252FF&}is{\c&HFFFFFF&}
-Dialogue: 0,0:01:07.68,0:01:08.01,Pop,,0,0,0,,Every verdict is {\c&H5252FF&}scored{\c&HFFFFFF&}
-Dialogue: 0,0:01:08.01,0:01:08.36,Pop,,0,0,0,,Every verdict is scored {\c&H5252FF&}against{\c&HFFFFFF&}
-Dialogue: 0,0:01:08.36,0:01:08.44,Pop,,0,0,0,,Every verdict is scored against {\c&H5252FF&}a{\c&HFFFFFF&}
-Dialogue: 0,0:01:08.44,0:01:08.83,Pop,,0,0,0,,Every verdict is scored against a {\c&H5252FF&}labeled{\c&HFFFFFF&}
-Dialogue: 0,0:01:08.83,0:01:09.27,Pop,,0,0,0,,{\c&H5252FF&}suite{\c&HFFFFFF&}
-Dialogue: 0,0:01:09.27,0:01:09.46,Pop,,0,0,0,,suite {\c&H5252FF&}and{\c&HFFFFFF&}
-Dialogue: 0,0:01:09.46,0:01:09.77,Pop,,0,0,0,,suite and {\c&H5252FF&}logged{\c&HFFFFFF&}
-Dialogue: 0,0:01:09.77,0:01:09.88,Pop,,0,0,0,,suite and logged {\c&H5252FF&}to{\c&HFFFFFF&}
-Dialogue: 0,0:01:09.88,0:01:11.21,Pop,,0,0,0,,suite and logged to {\c&H5252FF&}Braintrust.{\c&HFFFFFF&}
-Dialogue: 0,0:01:11.21,0:01:11.69,Pop,,0,0,0,,suite and logged to Braintrust. {\c&H5252FF&}Ten{\c&HFFFFFF&}
-Dialogue: 0,0:01:11.69,0:01:11.92,Pop,,0,0,0,,suite and logged to Braintrust. Ten {\c&H5252FF&}out{\c&HFFFFFF&}
-Dialogue: 0,0:01:11.92,0:01:12.04,Pop,,0,0,0,,{\c&H5252FF&}of{\c&HFFFFFF&}
-Dialogue: 0,0:01:12.04,0:01:12.88,Pop,,0,0,0,,of {\c&H5252FF&}ten,{\c&HFFFFFF&}
-Dialogue: 0,0:01:12.88,0:01:13.09,Pop,,0,0,0,,of ten, {\c&H5252FF&}and{\c&HFFFFFF&}
-Dialogue: 0,0:01:13.09,0:01:13.31,Pop,,0,0,0,,of ten, and {\c&H5252FF&}we{\c&HFFFFFF&}
-Dialogue: 0,0:01:13.31,0:01:13.82,Pop,,0,0,0,,of ten, and we {\c&H5252FF&}re-ran{\c&HFFFFFF&}
-Dialogue: 0,0:01:13.82,0:01:13.93,Pop,,0,0,0,,of ten, and we re-ran {\c&H5252FF&}the{\c&HFFFFFF&}
-Dialogue: 0,0:01:13.93,0:01:14.16,Pop,,0,0,0,,of ten, and we re-ran the {\c&H5252FF&}whole{\c&HFFFFFF&}
-Dialogue: 0,0:01:14.16,0:01:14.64,Pop,,0,0,0,,{\c&H5252FF&}suite{\c&HFFFFFF&}
-Dialogue: 0,0:01:14.64,0:01:14.92,Pop,,0,0,0,,suite {\c&H5252FF&}on{\c&HFFFFFF&}
-Dialogue: 0,0:01:14.92,0:01:15.44,Pop,,0,0,0,,suite on {\c&H5252FF&}real{\c&HFFFFFF&}
-Dialogue: 0,0:01:15.44,0:01:16.03,Pop,,0,0,0,,suite on real {\c&H5252FF&}Daytona{\c&HFFFFFF&}
-Dialogue: 0,0:01:16.03,0:01:17.18,Pop,,0,0,0,,suite on real Daytona {\c&H5252FF&}sandboxes{\c&HFFFFFF&}
-Dialogue: 0,0:01:17.18,0:01:17.40,Pop,,0,0,0,,suite on real Daytona sandboxes {\c&H5252FF&}at{\c&HFFFFFF&}
-Dialogue: 0,0:01:17.40,0:01:17.63,Pop,,0,0,0,,suite on real Daytona sandboxes at {\c&H5252FF&}about{\c&HFFFFFF&}
-Dialogue: 0,0:01:17.63,0:01:17.71,Pop,,0,0,0,,{\c&H5252FF&}a{\c&HFFFFFF&}
-Dialogue: 0,0:01:17.71,0:01:18.02,Pop,,0,0,0,,a {\c&H5252FF&}second{\c&HFFFFFF&}
-Dialogue: 0,0:01:18.02,0:01:18.18,Pop,,0,0,0,,a second {\c&H5252FF&}per{\c&HFFFFFF&}
-Dialogue: 0,0:01:18.18,0:01:19.36,Pop,,0,0,0,,a second per {\c&H5252FF&}action.{\c&HFFFFFF&}
-Dialogue: 0,0:01:19.36,0:01:19.56,Pop,,0,0,0,,a second per action. {\c&H5252FF&}We{\c&HFFFFFF&}
-Dialogue: 0,0:01:19.56,0:01:19.91,Pop,,0,0,0,,a second per action. We {\c&H5252FF&}also{\c&HFFFFFF&}
-Dialogue: 0,0:01:19.91,0:01:20.15,Pop,,0,0,0,,a second per action. We also {\c&H5252FF&}ship{\c&HFFFFFF&}
-Dialogue: 0,0:01:20.15,0:01:20.30,Pop,,0,0,0,,{\c&H5252FF&}our{\c&HFFFFFF&}
-Dialogue: 0,0:01:20.30,0:01:20.49,Pop,,0,0,0,,our {\c&H5252FF&}own{\c&HFFFFFF&}
-Dialogue: 0,0:01:20.49,0:01:21.57,Pop,,0,0,0,,our own {\c&H5252FF&}failure.{\c&HFFFFFF&}
-Dialogue: 0,0:01:21.57,0:01:22.53,Pop,,0,0,0,,our own failure. {\c&H5252FF&}Base64{\c&HFFFFFF&}
-Dialogue: 0,0:01:22.53,0:01:22.83,Pop,,0,0,0,,our own failure. Base64 {\c&H5252FF&}hides{\c&HFFFFFF&}
-Dialogue: 0,0:01:22.83,0:01:22.95,Pop,,0,0,0,,our own failure. Base64 hides {\c&H5252FF&}the{\c&HFFFFFF&}
-Dialogue: 0,0:01:22.95,0:01:23.29,Pop,,0,0,0,,our own failure. Base64 hides the {\c&H5252FF&}secret{\c&HFFFFFF&}
-Dialogue: 0,0:01:23.29,0:01:23.46,Pop,,0,0,0,,{\c&H5252FF&}from{\c&HFFFFFF&}
-Dialogue: 0,0:01:23.46,0:01:23.59,Pop,,0,0,0,,from {\c&H5252FF&}our{\c&HFFFFFF&}
-Dialogue: 0,0:01:23.59,0:01:24.47,Pop,,0,0,0,,from our {\c&H5252FF&}canary,{\c&HFFFFFF&}
-Dialogue: 0,0:01:24.47,0:01:24.66,Pop,,0,0,0,,from our canary, {\c&H5252FF&}so{\c&HFFFFFF&}
-Dialogue: 0,0:01:24.66,0:01:24.88,Pop,,0,0,0,,from our canary, so {\c&H5252FF&}that{\c&HFFFFFF&}
-Dialogue: 0,0:01:24.88,0:01:25.17,Pop,,0,0,0,,from our canary, so that {\c&H5252FF&}row{\c&HFFFFFF&}
-Dialogue: 0,0:01:25.17,0:01:25.45,Pop,,0,0,0,,from our canary, so that row {\c&H5252FF&}only{\c&HFFFFFF&}
-Dialogue: 0,0:01:25.45,0:01:26.14,Pop,,0,0,0,,{\c&H5252FF&}quarantines{\c&HFFFFFF&}
-Dialogue: 0,0:01:26.14,0:01:26.47,Pop,,0,0,0,,quarantines {\c&H5252FF&}instead{\c&HFFFFFF&}
-Dialogue: 0,0:01:26.47,0:01:26.56,Pop,,0,0,0,,quarantines instead {\c&H5252FF&}of{\c&HFFFFFF&}
-Dialogue: 0,0:01:26.56,0:01:27.66,Pop,,0,0,0,,quarantines instead of {\c&H5252FF&}blocking.{\c&HFFFFFF&}
-Dialogue: 0,0:01:27.66,0:01:28.23,Pop,,0,0,0,,quarantines instead of blocking. {\c&H5252FF&}Fail{\c&HFFFFFF&}
-Dialogue: 0,0:01:28.23,0:01:29.10,Pop,,0,0,0,,quarantines instead of blocking. Fail {\c&H5252FF&}closed,{\c&HFFFFFF&}
-Dialogue: 0,0:01:29.10,0:01:29.34,Pop,,0,0,0,,quarantines instead of blocking. Fail closed, {\c&H5252FF&}and{\c&HFFFFFF&}
-Dialogue: 0,0:01:29.34,0:01:29.56,Pop,,0,0,0,,{\c&H5252FF&}say{\c&HFFFFFF&}
-Dialogue: 0,0:01:29.56,0:01:30.23,Pop,,0,0,0,,say {\c&H5252FF&}so.{\c&HFFFFFF&}
-Dialogue: 0,0:01:30.23,0:01:30.83,Pop,,0,0,0,,{\c&H5252FF&}Daytona{\c&HFFFFFF&}
-Dialogue: 0,0:01:30.83,0:01:30.95,Pop,,0,0,0,,Daytona {\c&H5252FF&}for{\c&HFFFFFF&}
-Dialogue: 0,0:01:30.95,0:01:31.06,Pop,,0,0,0,,Daytona for {\c&H5252FF&}the{\c&HFFFFFF&}
-Dialogue: 0,0:01:31.06,0:01:31.68,Pop,,0,0,0,,Daytona for the {\c&H5252FF&}disposable{\c&HFFFFFF&}
-Dialogue: 0,0:01:31.68,0:01:32.31,Pop,,0,0,0,,Daytona for the disposable {\c&H5252FF&}world,{\c&HFFFFFF&}
-Dialogue: 0,0:01:32.31,0:01:32.95,Pop,,0,0,0,,Daytona for the disposable world, {\c&H5252FF&}Braintrust{\c&HFFFFFF&}
-Dialogue: 0,0:01:32.95,0:01:33.08,Pop,,0,0,0,,Daytona for the disposable world, Braintrust {\c&H5252FF&}for{\c&HFFFFFF&}
-Dialogue: 0,0:01:33.08,0:01:33.19,Pop,,0,0,0,,{\c&H5252FF&}the{\c&HFFFFFF&}
-Dialogue: 0,0:01:33.19,0:01:34.03,Pop,,0,0,0,,the {\c&H5252FF&}proof,{\c&HFFFFFF&}
-Dialogue: 0,0:01:34.03,0:01:34.69,Pop,,0,0,0,,the proof, {\c&H5252FF&}Fireworks{\c&HFFFFFF&}
-Dialogue: 0,0:01:34.69,0:01:34.83,Pop,,0,0,0,,the proof, Fireworks {\c&H5252FF&}for{\c&HFFFFFF&}
-Dialogue: 0,0:01:34.83,0:01:34.97,Pop,,0,0,0,,the proof, Fireworks for {\c&H5252FF&}the{\c&HFFFFFF&}
-Dialogue: 0,0:01:34.97,0:01:35.34,Pop,,0,0,0,,the proof, Fireworks for the {\c&H5252FF&}agent{\c&HFFFFFF&}
-Dialogue: 0,0:01:35.34,0:01:35.98,Pop,,0,0,0,,the proof, Fireworks for the agent {\c&H5252FF&}brain.{\c&HFFFFFF&}
-Dialogue: 0,0:01:36.34,0:01:36.50,Pop,,0,0,0,,{\c&H5252FF&}The{\c&HFFFFFF&}
-Dialogue: 0,0:01:36.50,0:01:37.01,Pop,,0,0,0,,The {\c&H5252FF&}dangerous{\c&HFFFFFF&}
-Dialogue: 0,0:01:37.01,0:01:37.55,Pop,,0,0,0,,The dangerous {\c&H5252FF&}actions{\c&HFFFFFF&}
-Dialogue: 0,0:01:37.55,0:01:37.97,Pop,,0,0,0,,The dangerous actions {\c&H5252FF&}die{\c&HFFFFFF&}
-Dialogue: 0,0:01:37.97,0:01:38.09,Pop,,0,0,0,,The dangerous actions die {\c&H5252FF&}in{\c&HFFFFFF&}
-Dialogue: 0,0:01:38.09,0:01:38.21,Pop,,0,0,0,,The dangerous actions die in {\c&H5252FF&}the{\c&HFFFFFF&}
-Dialogue: 0,0:01:38.21,0:01:38.88,Pop,,0,0,0,,The dangerous actions die in the {\c&H5252FF&}fork.{\c&HFFFFFF&}
-Dialogue: 0,0:01:39.24,0:01:39.74,Pop,,0,0,0,,{\c&H5252FF&}Fork{\c&HFFFFFF&}
-Dialogue: 0,0:01:39.74,0:01:40.66,Pop,,0,0,0,,Fork {\c&H5252FF&}around,{\c&HFFFFFF&}
-Dialogue: 0,0:01:40.66,0:01:40.90,Pop,,0,0,0,,Fork around, {\c&H5252FF&}and{\c&HFFFFFF&}
-Dialogue: 0,0:01:40.90,0:01:41.23,Pop,,0,0,0,,Fork around, and {\c&H5252FF&}find{\c&HFFFFFF&}
-Dialogue: 0,0:01:41.23,0:01:41.95,Pop,,0,0,0,,Fork around, and find {\c&H5252FF&}out.{\c&HFFFFFF&}
+Dialogue: 0,0:00:20.67,0:00:20.92,Pop,,0,0,0,,tool call {\c&H5252FF&}is{\c&HFFFFFF&}
+Dialogue: 0,0:00:20.92,0:00:22.15,Pop,,0,0,0,,tool call is {\c&H5252FF&}irreversible.{\c&HFFFFFF&}
+Dialogue: 0,0:00:22.15,0:00:22.31,Pop,,0,0,0,,tool call is irreversible. {\c&H5252FF&}A{\c&HFFFFFF&}
+Dialogue: 0,0:00:22.31,0:00:22.68,Pop,,0,0,0,,tool call is irreversible. A {\c&H5252FF&}prompt{\c&HFFFFFF&}
+Dialogue: 0,0:00:22.68,0:00:23.62,Pop,,0,0,0,,tool call is irreversible. A prompt {\c&H5252FF&}injection,{\c&HFFFFFF&}
+Dialogue: 0,0:00:23.68,0:00:23.84,Pop,,0,0,0,,{\c&H5252FF&}a{\c&HFFFFFF&}
+Dialogue: 0,0:00:23.84,0:00:24.60,Pop,,0,0,0,,a {\c&H5252FF&}hallucinated{\c&HFFFFFF&}
+Dialogue: 0,0:00:24.60,0:00:25.37,Pop,,0,0,0,,a hallucinated {\c&H5252FF&}delete,{\c&HFFFFFF&}
+Dialogue: 0,0:00:25.37,0:00:25.56,Pop,,0,0,0,,a hallucinated delete, {\c&H5252FF&}a{\c&HFFFFFF&}
+Dialogue: 0,0:00:25.56,0:00:25.92,Pop,,0,0,0,,a hallucinated delete, a {\c&H5252FF&}key{\c&HFFFFFF&}
+Dialogue: 0,0:00:25.92,0:00:26.64,Pop,,0,0,0,,a hallucinated delete, a key {\c&H5252FF&}posted{\c&HFFFFFF&}
+Dialogue: 0,0:00:26.64,0:00:26.86,Pop,,0,0,0,,a hallucinated delete, a key posted {\c&H5252FF&}to{\c&HFFFFFF&}
+Dialogue: 0,0:00:26.86,0:00:26.94,Pop,,0,0,0,,{\c&H5252FF&}a{\c&HFFFFFF&}
+Dialogue: 0,0:00:26.94,0:00:28.18,Pop,,0,0,0,,a {\c&H5252FF&}pastebin.{\c&HFFFFFF&}
+Dialogue: 0,0:00:28.18,0:00:28.53,Pop,,0,0,0,,a pastebin. {\c&H5252FF&}Most{\c&HFFFFFF&}
+Dialogue: 0,0:00:28.53,0:00:28.65,Pop,,0,0,0,,a pastebin. Most {\c&H5252FF&}of{\c&HFFFFFF&}
+Dialogue: 0,0:00:28.65,0:00:29.05,Pop,,0,0,0,,a pastebin. Most of {\c&H5252FF&}today's{\c&HFFFFFF&}
+Dialogue: 0,0:00:29.05,0:00:29.76,Pop,,0,0,0,,a pastebin. Most of today's {\c&H5252FF&}guardrails{\c&HFFFFFF&}
+Dialogue: 0,0:00:29.76,0:00:30.01,Pop,,0,0,0,,a pastebin. Most of today's guardrails {\c&H5252FF&}read{\c&HFFFFFF&}
+Dialogue: 0,0:00:30.01,0:00:30.12,Pop,,0,0,0,,{\c&H5252FF&}the{\c&HFFFFFF&}
+Dialogue: 0,0:00:30.12,0:00:30.51,Pop,,0,0,0,,the {\c&H5252FF&}command{\c&HFFFFFF&}
+Dialogue: 0,0:00:30.51,0:00:31.08,Pop,,0,0,0,,the command {\c&H5252FF&}text{\c&HFFFFFF&}
+Dialogue: 0,0:00:31.08,0:00:31.33,Pop,,0,0,0,,the command text {\c&H5252FF&}and{\c&HFFFFFF&}
+Dialogue: 0,0:00:31.33,0:00:32.10,Pop,,0,0,0,,the command text and {\c&H5252FF&}guess.{\c&HFFFFFF&}
+Dialogue: 0,0:00:32.10,0:00:33.47,Pop,,0,0,0,,{\c&H5252FF&}FAAFO{\c&HFFFFFF&}
+Dialogue: 0,0:00:33.47,0:00:33.71,Pop,,0,0,0,,FAAFO {\c&H5252FF&}does{\c&HFFFFFF&}
+Dialogue: 0,0:00:33.71,0:00:33.92,Pop,,0,0,0,,FAAFO does {\c&H5252FF&}not{\c&HFFFFFF&}
+Dialogue: 0,0:00:33.92,0:00:34.91,Pop,,0,0,0,,FAAFO does not {\c&H5252FF&}guess.{\c&HFFFFFF&}
+Dialogue: 0,0:00:34.91,0:00:35.12,Pop,,0,0,0,,FAAFO does not guess. {\c&H5252FF&}It{\c&HFFFFFF&}
+Dialogue: 0,0:00:35.12,0:00:35.49,Pop,,0,0,0,,FAAFO does not guess. It {\c&H5252FF&}runs{\c&HFFFFFF&}
+Dialogue: 0,0:00:35.49,0:00:35.66,Pop,,0,0,0,,FAAFO does not guess. It runs {\c&H5252FF&}the{\c&HFFFFFF&}
+Dialogue: 0,0:00:35.66,0:00:36.12,Pop,,0,0,0,,{\c&H5252FF&}action{\c&HFFFFFF&}
+Dialogue: 0,0:00:36.12,0:00:36.23,Pop,,0,0,0,,action {\c&H5252FF&}in{\c&HFFFFFF&}
+Dialogue: 0,0:00:36.23,0:00:36.31,Pop,,0,0,0,,action in {\c&H5252FF&}a{\c&HFFFFFF&}
+Dialogue: 0,0:00:36.31,0:00:37.05,Pop,,0,0,0,,action in a {\c&H5252FF&}disposable{\c&HFFFFFF&}
+Dialogue: 0,0:00:37.05,0:00:37.62,Pop,,0,0,0,,action in a disposable {\c&H5252FF&}stand-in{\c&HFFFFFF&}
+Dialogue: 0,0:00:37.62,0:00:37.77,Pop,,0,0,0,,action in a disposable stand-in {\c&H5252FF&}for{\c&HFFFFFF&}
+Dialogue: 0,0:00:37.77,0:00:37.94,Pop,,0,0,0,,action in a disposable stand-in for {\c&H5252FF&}your{\c&HFFFFFF&}
+Dialogue: 0,0:00:37.94,0:00:38.72,Pop,,0,0,0,,{\c&H5252FF&}world,{\c&HFFFFFF&}
+Dialogue: 0,0:00:38.72,0:00:39.16,Pop,,0,0,0,,world, {\c&H5252FF&}measures{\c&HFFFFFF&}
+Dialogue: 0,0:00:39.16,0:00:39.33,Pop,,0,0,0,,world, measures {\c&H5252FF&}what{\c&HFFFFFF&}
+Dialogue: 0,0:00:39.33,0:00:39.47,Pop,,0,0,0,,world, measures what {\c&H5252FF&}it{\c&HFFFFFF&}
+Dialogue: 0,0:00:39.47,0:00:40.05,Pop,,0,0,0,,world, measures what it {\c&H5252FF&}actually{\c&HFFFFFF&}
+Dialogue: 0,0:00:40.05,0:00:40.70,Pop,,0,0,0,,world, measures what it actually {\c&H5252FF&}touched,{\c&HFFFFFF&}
+Dialogue: 0,0:00:40.70,0:00:40.97,Pop,,0,0,0,,world, measures what it actually touched, {\c&H5252FF&}and{\c&HFFFFFF&}
+Dialogue: 0,0:00:40.97,0:00:41.38,Pop,,0,0,0,,{\c&H5252FF&}only{\c&HFFFFFF&}
+Dialogue: 0,0:00:41.38,0:00:41.89,Pop,,0,0,0,,only {\c&H5252FF&}then{\c&HFFFFFF&}
+Dialogue: 0,0:00:41.89,0:00:43.83,Pop,,0,0,0,,only then {\c&H5252FF&}decides.{\c&HFFFFFF&}
+Dialogue: 0,0:00:43.83,0:00:44.38,Pop,,0,0,0,,only then decides. {\c&H5252FF&}Think{\c&HFFFFFF&}
+Dialogue: 0,0:00:44.38,0:00:45.13,Pop,,0,0,0,,only then decides. Think {\c&H5252FF&}terraform{\c&HFFFFFF&}
+Dialogue: 0,0:00:45.13,0:00:46.08,Pop,,0,0,0,,only then decides. Think terraform {\c&H5252FF&}plan,{\c&HFFFFFF&}
+Dialogue: 0,0:00:46.08,0:00:46.30,Pop,,0,0,0,,only then decides. Think terraform plan, {\c&H5252FF&}but{\c&HFFFFFF&}
+Dialogue: 0,0:00:46.30,0:00:46.50,Pop,,0,0,0,,{\c&H5252FF&}for{\c&HFFFFFF&}
+Dialogue: 0,0:00:46.50,0:00:46.93,Pop,,0,0,0,,for {\c&H5252FF&}agent{\c&HFFFFFF&}
+Dialogue: 0,0:00:46.93,0:00:47.90,Pop,,0,0,0,,for agent {\c&H5252FF&}actions.{\c&HFFFFFF&}
+Dialogue: 0,0:00:47.90,0:00:48.20,Pop,,0,0,0,,{\c&H5252FF&}Here{\c&HFFFFFF&}
+Dialogue: 0,0:00:48.20,0:00:48.33,Pop,,0,0,0,,Here {\c&H5252FF&}is{\c&HFFFFFF&}
+Dialogue: 0,0:00:48.33,0:00:48.45,Pop,,0,0,0,,Here is {\c&H5252FF&}the{\c&HFFFFFF&}
+Dialogue: 0,0:00:48.45,0:00:48.70,Pop,,0,0,0,,Here is the {\c&H5252FF&}part{\c&HFFFFFF&}
+Dialogue: 0,0:00:48.70,0:00:48.88,Pop,,0,0,0,,Here is the part {\c&H5252FF&}that{\c&HFFFFFF&}
+Dialogue: 0,0:00:48.88,0:00:49.31,Pop,,0,0,0,,Here is the part that {\c&H5252FF&}text{\c&HFFFFFF&}
+Dialogue: 0,0:00:49.31,0:00:49.73,Pop,,0,0,0,,Here is the part that text {\c&H5252FF&}matching{\c&HFFFFFF&}
+Dialogue: 0,0:00:49.73,0:00:49.99,Pop,,0,0,0,,{\c&H5252FF&}gets{\c&HFFFFFF&}
+Dialogue: 0,0:00:49.99,0:00:50.95,Pop,,0,0,0,,gets {\c&H5252FF&}wrong.{\c&HFFFFFF&}
+Dialogue: 0,0:00:50.95,0:00:51.10,Pop,,0,0,0,,gets wrong. {\c&H5252FF&}A{\c&HFFFFFF&}
+Dialogue: 0,0:00:51.10,0:00:51.51,Pop,,0,0,0,,gets wrong. A {\c&H5252FF&}pattern{\c&HFFFFFF&}
+Dialogue: 0,0:00:51.51,0:00:51.86,Pop,,0,0,0,,gets wrong. A pattern {\c&H5252FF&}matcher{\c&HFFFFFF&}
+Dialogue: 0,0:00:51.86,0:00:52.03,Pop,,0,0,0,,gets wrong. A pattern matcher {\c&H5252FF&}would{\c&HFFFFFF&}
+Dialogue: 0,0:00:52.03,0:00:52.36,Pop,,0,0,0,,gets wrong. A pattern matcher would {\c&H5252FF&}block{\c&HFFFFFF&}
+Dialogue: 0,0:00:52.36,0:00:52.57,Pop,,0,0,0,,{\c&H5252FF&}this{\c&HFFFFFF&}
+Dialogue: 0,0:00:52.57,0:00:53.12,Pop,,0,0,0,,this {\c&H5252FF&}recursive{\c&HFFFFFF&}
+Dialogue: 0,0:00:53.12,0:00:53.57,Pop,,0,0,0,,this recursive {\c&H5252FF&}delete{\c&HFFFFFF&}
+Dialogue: 0,0:00:53.57,0:00:53.80,Pop,,0,0,0,,this recursive delete {\c&H5252FF&}on{\c&HFFFFFF&}
+Dialogue: 0,0:00:53.80,0:00:54.72,Pop,,0,0,0,,this recursive delete on {\c&H5252FF&}sight.{\c&HFFFFFF&}
+Dialogue: 0,0:00:54.72,0:00:54.94,Pop,,0,0,0,,this recursive delete on sight. {\c&H5252FF&}We{\c&HFFFFFF&}
+Dialogue: 0,0:00:54.94,0:00:55.24,Pop,,0,0,0,,this recursive delete on sight. We {\c&H5252FF&}ran{\c&HFFFFFF&}
+Dialogue: 0,0:00:55.24,0:00:55.76,Pop,,0,0,0,,{\c&H5252FF&}it,{\c&HFFFFFF&}
+Dialogue: 0,0:00:55.76,0:00:56.18,Pop,,0,0,0,,it, {\c&H5252FF&}measured{\c&HFFFFFF&}
+Dialogue: 0,0:00:56.18,0:00:56.64,Pop,,0,0,0,,it, measured {\c&H5252FF&}it,{\c&HFFFFFF&}
+Dialogue: 0,0:00:56.64,0:00:56.89,Pop,,0,0,0,,it, measured it, {\c&H5252FF&}and{\c&HFFFFFF&}
+Dialogue: 0,0:00:56.89,0:00:57.25,Pop,,0,0,0,,it, measured it, and {\c&H5252FF&}every{\c&HFFFFFF&}
+Dialogue: 0,0:00:57.25,0:00:57.64,Pop,,0,0,0,,it, measured it, and every {\c&H5252FF&}file{\c&HFFFFFF&}
+Dialogue: 0,0:00:57.64,0:00:57.77,Pop,,0,0,0,,it, measured it, and every file {\c&H5252FF&}it{\c&HFFFFFF&}
+Dialogue: 0,0:00:57.77,0:00:58.27,Pop,,0,0,0,,{\c&H5252FF&}removed{\c&HFFFFFF&}
+Dialogue: 0,0:00:58.27,0:00:58.47,Pop,,0,0,0,,removed {\c&H5252FF&}was{\c&HFFFFFF&}
+Dialogue: 0,0:00:58.47,0:00:58.94,Pop,,0,0,0,,removed was {\c&H5252FF&}inside{\c&HFFFFFF&}
+Dialogue: 0,0:00:58.94,0:00:59.05,Pop,,0,0,0,,removed was inside {\c&H5252FF&}the{\c&HFFFFFF&}
+Dialogue: 0,0:00:59.05,0:01:00.24,Pop,,0,0,0,,removed was inside the {\c&H5252FF&}workspace.{\c&HFFFFFF&}
+Dialogue: 0,0:01:00.24,0:01:01.51,Pop,,0,0,0,,removed was inside the workspace. {\c&H5252FF&}Cleared.{\c&HFFFFFF&}
+Dialogue: 0,0:01:01.51,0:01:01.68,Pop,,0,0,0,,removed was inside the workspace. Cleared. {\c&H5252FF&}The{\c&HFFFFFF&}
+Dialogue: 0,0:01:01.68,0:01:02.03,Pop,,0,0,0,,{\c&H5252FF&}same{\c&HFFFFFF&}
+Dialogue: 0,0:01:02.03,0:01:02.45,Pop,,0,0,0,,same {\c&H5252FF&}engine{\c&HFFFFFF&}
+Dialogue: 0,0:01:02.45,0:01:02.61,Pop,,0,0,0,,same engine {\c&H5252FF&}that{\c&HFFFFFF&}
+Dialogue: 0,0:01:02.61,0:01:02.94,Pop,,0,0,0,,same engine that {\c&H5252FF&}blocked{\c&HFFFFFF&}
+Dialogue: 0,0:01:02.94,0:01:03.09,Pop,,0,0,0,,same engine that blocked {\c&H5252FF&}the{\c&HFFFFFF&}
+Dialogue: 0,0:01:03.09,0:01:04.06,Pop,,0,0,0,,same engine that blocked the {\c&H5252FF&}exfiltration{\c&HFFFFFF&}
+Dialogue: 0,0:01:04.06,0:01:04.46,Pop,,0,0,0,,same engine that blocked the exfiltration {\c&H5252FF&}clears{\c&HFFFFFF&}
+Dialogue: 0,0:01:04.46,0:01:04.57,Pop,,0,0,0,,{\c&H5252FF&}the{\c&HFFFFFF&}
+Dialogue: 0,0:01:04.57,0:01:04.87,Pop,,0,0,0,,the {\c&H5252FF&}safe{\c&HFFFFFF&}
+Dialogue: 0,0:01:04.87,0:01:05.51,Pop,,0,0,0,,the safe {\c&H5252FF&}cleanup,{\c&HFFFFFF&}
+Dialogue: 0,0:01:05.51,0:01:05.84,Pop,,0,0,0,,the safe cleanup, {\c&H5252FF&}because{\c&HFFFFFF&}
+Dialogue: 0,0:01:05.84,0:01:05.97,Pop,,0,0,0,,the safe cleanup, because {\c&H5252FF&}it{\c&HFFFFFF&}
+Dialogue: 0,0:01:05.97,0:01:06.44,Pop,,0,0,0,,the safe cleanup, because it {\c&H5252FF&}measured{\c&HFFFFFF&}
+Dialogue: 0,0:01:06.44,0:01:06.87,Pop,,0,0,0,,the safe cleanup, because it measured {\c&H5252FF&}instead{\c&HFFFFFF&}
+Dialogue: 0,0:01:06.87,0:01:06.99,Pop,,0,0,0,,{\c&H5252FF&}of{\c&HFFFFFF&}
+Dialogue: 0,0:01:06.99,0:01:07.83,Pop,,0,0,0,,of {\c&H5252FF&}guessing.{\c&HFFFFFF&}
+Dialogue: 0,0:01:07.83,0:01:08.23,Pop,,0,0,0,,{\c&H5252FF&}The{\c&HFFFFFF&}
+Dialogue: 0,0:01:08.23,0:01:08.69,Pop,,0,0,0,,The {\c&H5252FF&}labeled{\c&HFFFFFF&}
+Dialogue: 0,0:01:08.69,0:01:09.11,Pop,,0,0,0,,The labeled {\c&H5252FF&}suite{\c&HFFFFFF&}
+Dialogue: 0,0:01:09.11,0:01:09.27,Pop,,0,0,0,,The labeled suite {\c&H5252FF&}is{\c&HFFFFFF&}
+Dialogue: 0,0:01:09.27,0:01:09.76,Pop,,0,0,0,,The labeled suite is {\c&H5252FF&}scored{\c&HFFFFFF&}
+Dialogue: 0,0:01:09.76,0:01:09.98,Pop,,0,0,0,,The labeled suite is scored {\c&H5252FF&}end{\c&HFFFFFF&}
+Dialogue: 0,0:01:09.98,0:01:10.13,Pop,,0,0,0,,The labeled suite is scored end {\c&H5252FF&}to{\c&HFFFFFF&}
+Dialogue: 0,0:01:10.13,0:01:10.70,Pop,,0,0,0,,{\c&H5252FF&}end,{\c&HFFFFFF&}
+Dialogue: 0,0:01:10.70,0:01:10.90,Pop,,0,0,0,,end, {\c&H5252FF&}and{\c&HFFFFFF&}
+Dialogue: 0,0:01:10.90,0:01:11.15,Pop,,0,0,0,,end, and {\c&H5252FF&}those{\c&HFFFFFF&}
+Dialogue: 0,0:01:11.15,0:01:11.57,Pop,,0,0,0,,end, and those {\c&H5252FF&}scored{\c&HFFFFFF&}
+Dialogue: 0,0:01:11.57,0:01:12.11,Pop,,0,0,0,,end, and those scored {\c&H5252FF&}rows{\c&HFFFFFF&}
+Dialogue: 0,0:01:12.11,0:01:12.48,Pop,,0,0,0,,end, and those scored rows {\c&H5252FF&}log{\c&HFFFFFF&}
+Dialogue: 0,0:01:12.48,0:01:12.61,Pop,,0,0,0,,end, and those scored rows log {\c&H5252FF&}to{\c&HFFFFFF&}
+Dialogue: 0,0:01:12.61,0:01:13.79,Pop,,0,0,0,,{\c&H5252FF&}Braintrust.{\c&HFFFFFF&}
+Dialogue: 0,0:01:13.79,0:01:14.31,Pop,,0,0,0,,Braintrust. {\c&H5252FF&}Ten{\c&HFFFFFF&}
+Dialogue: 0,0:01:14.31,0:01:14.56,Pop,,0,0,0,,Braintrust. Ten {\c&H5252FF&}out{\c&HFFFFFF&}
+Dialogue: 0,0:01:14.56,0:01:14.67,Pop,,0,0,0,,Braintrust. Ten out {\c&H5252FF&}of{\c&HFFFFFF&}
+Dialogue: 0,0:01:14.67,0:01:15.46,Pop,,0,0,0,,Braintrust. Ten out of {\c&H5252FF&}ten,{\c&HFFFFFF&}
+Dialogue: 0,0:01:15.46,0:01:15.67,Pop,,0,0,0,,Braintrust. Ten out of ten, {\c&H5252FF&}and{\c&HFFFFFF&}
+Dialogue: 0,0:01:15.67,0:01:15.89,Pop,,0,0,0,,Braintrust. Ten out of ten, and {\c&H5252FF&}we{\c&HFFFFFF&}
+Dialogue: 0,0:01:15.89,0:01:16.39,Pop,,0,0,0,,{\c&H5252FF&}re-ran{\c&HFFFFFF&}
+Dialogue: 0,0:01:16.39,0:01:16.51,Pop,,0,0,0,,re-ran {\c&H5252FF&}the{\c&HFFFFFF&}
+Dialogue: 0,0:01:16.51,0:01:16.76,Pop,,0,0,0,,re-ran the {\c&H5252FF&}whole{\c&HFFFFFF&}
+Dialogue: 0,0:01:16.76,0:01:17.20,Pop,,0,0,0,,re-ran the whole {\c&H5252FF&}suite{\c&HFFFFFF&}
+Dialogue: 0,0:01:17.20,0:01:17.45,Pop,,0,0,0,,re-ran the whole suite {\c&H5252FF&}on{\c&HFFFFFF&}
+Dialogue: 0,0:01:17.45,0:01:17.77,Pop,,0,0,0,,re-ran the whole suite on {\c&H5252FF&}real{\c&HFFFFFF&}
+Dialogue: 0,0:01:17.77,0:01:18.27,Pop,,0,0,0,,re-ran the whole suite on real {\c&H5252FF&}Daytona{\c&HFFFFFF&}
+Dialogue: 0,0:01:18.27,0:01:19.35,Pop,,0,0,0,,{\c&H5252FF&}sandboxes{\c&HFFFFFF&}
+Dialogue: 0,0:01:19.35,0:01:19.57,Pop,,0,0,0,,sandboxes {\c&H5252FF&}at{\c&HFFFFFF&}
+Dialogue: 0,0:01:19.57,0:01:19.80,Pop,,0,0,0,,sandboxes at {\c&H5252FF&}about{\c&HFFFFFF&}
+Dialogue: 0,0:01:19.80,0:01:19.88,Pop,,0,0,0,,sandboxes at about {\c&H5252FF&}a{\c&HFFFFFF&}
+Dialogue: 0,0:01:19.88,0:01:20.21,Pop,,0,0,0,,sandboxes at about a {\c&H5252FF&}second{\c&HFFFFFF&}
+Dialogue: 0,0:01:20.21,0:01:20.37,Pop,,0,0,0,,sandboxes at about a second {\c&H5252FF&}per{\c&HFFFFFF&}
+Dialogue: 0,0:01:20.37,0:01:21.14,Pop,,0,0,0,,sandboxes at about a second per {\c&H5252FF&}action.{\c&HFFFFFF&}
+Dialogue: 0,0:01:21.23,0:01:21.44,Pop,,0,0,0,,{\c&H5252FF&}We{\c&HFFFFFF&}
+Dialogue: 0,0:01:21.44,0:01:21.86,Pop,,0,0,0,,We {\c&H5252FF&}also{\c&HFFFFFF&}
+Dialogue: 0,0:01:21.86,0:01:22.21,Pop,,0,0,0,,We also {\c&H5252FF&}ship{\c&HFFFFFF&}
+Dialogue: 0,0:01:22.21,0:01:22.42,Pop,,0,0,0,,We also ship {\c&H5252FF&}our{\c&HFFFFFF&}
+Dialogue: 0,0:01:22.42,0:01:22.67,Pop,,0,0,0,,We also ship our {\c&H5252FF&}own{\c&HFFFFFF&}
+Dialogue: 0,0:01:22.67,0:01:23.69,Pop,,0,0,0,,We also ship our own {\c&H5252FF&}failure.{\c&HFFFFFF&}
+Dialogue: 0,0:01:23.69,0:01:24.74,Pop,,0,0,0,,We also ship our own failure. {\c&H5252FF&}Base64{\c&HFFFFFF&}
+Dialogue: 0,0:01:24.74,0:01:25.07,Pop,,0,0,0,,{\c&H5252FF&}hides{\c&HFFFFFF&}
+Dialogue: 0,0:01:25.07,0:01:25.19,Pop,,0,0,0,,hides {\c&H5252FF&}the{\c&HFFFFFF&}
+Dialogue: 0,0:01:25.19,0:01:25.53,Pop,,0,0,0,,hides the {\c&H5252FF&}secret{\c&HFFFFFF&}
+Dialogue: 0,0:01:25.53,0:01:25.70,Pop,,0,0,0,,hides the secret {\c&H5252FF&}from{\c&HFFFFFF&}
+Dialogue: 0,0:01:25.70,0:01:25.84,Pop,,0,0,0,,hides the secret from {\c&H5252FF&}our{\c&HFFFFFF&}
+Dialogue: 0,0:01:25.84,0:01:26.68,Pop,,0,0,0,,hides the secret from our {\c&H5252FF&}canary,{\c&HFFFFFF&}
+Dialogue: 0,0:01:26.68,0:01:26.86,Pop,,0,0,0,,hides the secret from our canary, {\c&H5252FF&}so{\c&HFFFFFF&}
+Dialogue: 0,0:01:26.86,0:01:27.06,Pop,,0,0,0,,{\c&H5252FF&}that{\c&HFFFFFF&}
+Dialogue: 0,0:01:27.06,0:01:27.38,Pop,,0,0,0,,that {\c&H5252FF&}row{\c&HFFFFFF&}
+Dialogue: 0,0:01:27.38,0:01:27.66,Pop,,0,0,0,,that row {\c&H5252FF&}only{\c&HFFFFFF&}
+Dialogue: 0,0:01:27.66,0:01:28.40,Pop,,0,0,0,,that row only {\c&H5252FF&}quarantines{\c&HFFFFFF&}
+Dialogue: 0,0:01:28.40,0:01:28.71,Pop,,0,0,0,,that row only quarantines {\c&H5252FF&}instead{\c&HFFFFFF&}
+Dialogue: 0,0:01:28.71,0:01:28.80,Pop,,0,0,0,,that row only quarantines instead {\c&H5252FF&}of{\c&HFFFFFF&}
+Dialogue: 0,0:01:28.80,0:01:29.58,Pop,,0,0,0,,that row only quarantines instead of {\c&H5252FF&}blocking.{\c&HFFFFFF&}
+Dialogue: 0,0:01:29.87,0:01:30.26,Pop,,0,0,0,,{\c&H5252FF&}Fail{\c&HFFFFFF&}
+Dialogue: 0,0:01:30.26,0:01:31.18,Pop,,0,0,0,,Fail {\c&H5252FF&}closed,{\c&HFFFFFF&}
+Dialogue: 0,0:01:31.18,0:01:31.40,Pop,,0,0,0,,Fail closed, {\c&H5252FF&}and{\c&HFFFFFF&}
+Dialogue: 0,0:01:31.40,0:01:31.63,Pop,,0,0,0,,Fail closed, and {\c&H5252FF&}say{\c&HFFFFFF&}
+Dialogue: 0,0:01:31.63,0:01:32.33,Pop,,0,0,0,,Fail closed, and say {\c&H5252FF&}so.{\c&HFFFFFF&}
+Dialogue: 0,0:01:32.33,0:01:32.88,Pop,,0,0,0,,{\c&H5252FF&}Daytona{\c&HFFFFFF&}
+Dialogue: 0,0:01:32.88,0:01:33.01,Pop,,0,0,0,,Daytona {\c&H5252FF&}for{\c&HFFFFFF&}
+Dialogue: 0,0:01:33.01,0:01:33.11,Pop,,0,0,0,,Daytona for {\c&H5252FF&}the{\c&HFFFFFF&}
+Dialogue: 0,0:01:33.11,0:01:33.69,Pop,,0,0,0,,Daytona for the {\c&H5252FF&}disposable{\c&HFFFFFF&}
+Dialogue: 0,0:01:33.69,0:01:34.19,Pop,,0,0,0,,Daytona for the disposable {\c&H5252FF&}world,{\c&HFFFFFF&}
+Dialogue: 0,0:01:34.19,0:01:34.81,Pop,,0,0,0,,Daytona for the disposable world, {\c&H5252FF&}Braintrust{\c&HFFFFFF&}
+Dialogue: 0,0:01:34.81,0:01:34.93,Pop,,0,0,0,,Daytona for the disposable world, Braintrust {\c&H5252FF&}for{\c&HFFFFFF&}
+Dialogue: 0,0:01:34.93,0:01:35.05,Pop,,0,0,0,,{\c&H5252FF&}the{\c&HFFFFFF&}
+Dialogue: 0,0:01:35.05,0:01:35.72,Pop,,0,0,0,,the {\c&H5252FF&}proof,{\c&HFFFFFF&}
+Dialogue: 0,0:01:35.72,0:01:36.39,Pop,,0,0,0,,the proof, {\c&H5252FF&}Fireworks{\c&HFFFFFF&}
+Dialogue: 0,0:01:36.39,0:01:36.52,Pop,,0,0,0,,the proof, Fireworks {\c&H5252FF&}for{\c&HFFFFFF&}
+Dialogue: 0,0:01:36.52,0:01:36.66,Pop,,0,0,0,,the proof, Fireworks for {\c&H5252FF&}the{\c&HFFFFFF&}
+Dialogue: 0,0:01:36.66,0:01:37.04,Pop,,0,0,0,,the proof, Fireworks for the {\c&H5252FF&}agent{\c&HFFFFFF&}
+Dialogue: 0,0:01:37.04,0:01:37.64,Pop,,0,0,0,,the proof, Fireworks for the agent {\c&H5252FF&}brain.{\c&HFFFFFF&}
+Dialogue: 0,0:01:37.81,0:01:37.98,Pop,,0,0,0,,{\c&H5252FF&}The{\c&HFFFFFF&}
+Dialogue: 0,0:01:37.98,0:01:38.48,Pop,,0,0,0,,The {\c&H5252FF&}dangerous{\c&HFFFFFF&}
+Dialogue: 0,0:01:38.48,0:01:39.00,Pop,,0,0,0,,The dangerous {\c&H5252FF&}actions{\c&HFFFFFF&}
+Dialogue: 0,0:01:39.00,0:01:39.36,Pop,,0,0,0,,The dangerous actions {\c&H5252FF&}die{\c&HFFFFFF&}
+Dialogue: 0,0:01:39.36,0:01:39.47,Pop,,0,0,0,,The dangerous actions die {\c&H5252FF&}in{\c&HFFFFFF&}
+Dialogue: 0,0:01:39.47,0:01:39.54,Pop,,0,0,0,,The dangerous actions die in {\c&H5252FF&}a{\c&HFFFFFF&}
+Dialogue: 0,0:01:39.54,0:01:40.10,Pop,,0,0,0,,The dangerous actions die in a {\c&H5252FF&}throwaway{\c&HFFFFFF&}
+Dialogue: 0,0:01:40.10,0:01:41.25,Pop,,0,0,0,,{\c&H5252FF&}sandbox.{\c&HFFFFFF&}
+Dialogue: 0,0:01:41.25,0:01:41.56,Pop,,0,0,0,,sandbox. {\c&H5252FF&}Fork{\c&HFFFFFF&}
+Dialogue: 0,0:01:41.56,0:01:42.21,Pop,,0,0,0,,sandbox. Fork {\c&H5252FF&}around,{\c&HFFFFFF&}
+Dialogue: 0,0:01:42.21,0:01:42.43,Pop,,0,0,0,,sandbox. Fork around, {\c&H5252FF&}and{\c&HFFFFFF&}
+Dialogue: 0,0:01:42.43,0:01:42.74,Pop,,0,0,0,,sandbox. Fork around, and {\c&H5252FF&}find{\c&HFFFFFF&}
+Dialogue: 0,0:01:42.74,0:01:43.44,Pop,,0,0,0,,sandbox. Fork around, and find {\c&H5252FF&}out.{\c&HFFFFFF&}

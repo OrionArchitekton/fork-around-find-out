@@ -75,8 +75,7 @@ export default async function Home({
           {/* Counts beat a percentage here: "100%" over a small suite reads as
               a vanity stat, and the near-misses are the interesting part. */}
           <span className="badge on">
-            {suite.correct}/{suite.total} correct · {harmful} attacks, {SCENARIOS.length - harmful} benign
-            near-misses
+            {suite.correct}/{suite.total} correct · {harmful} harmful, {SCENARIOS.length - harmful} benign
           </span>
           <span className="badge">fail-closed</span>
           <span className={`badge ${wired.daytona ? "on" : ""}`}>Daytona sandbox</span>
@@ -141,8 +140,8 @@ export default async function Home({
           separate those; measuring can.
         </p>
         <p>
-          Every verdict is scored against a labeled suite ({SCENARIOS.length} scenarios,{" "}
-          {harmful} harmful) and logged to a Braintrust project. The full suite was also
+          Every scenario in the labeled suite ({SCENARIOS.length} scenarios, {harmful} harmful)
+          is scored, and running the suite logs those scored rows to a Braintrust project. The full suite was also
           re-measured on real Daytona sandboxes on 2026-07-24:{" "}
           <b>
             {SCENARIOS.length}/{SCENARIOS.length} correct, about a second per action

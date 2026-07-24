@@ -23,9 +23,10 @@ Fireworks AI (agent brain), Vitest, Vercel.
 - **Live, not simulated.** The deployed demo measures on real Daytona sandboxes; the verdict
   card prints the id of the sandbox the action ran in. The full 10-scenario suite was
   re-measured live on 2026-07-24: **10/10 correct, about one second per action**.
-- **Near-misses are the proof.** 6 attacks and 4 benign near-misses, including a recursive
-  delete that a regex would block and measurement clears, and a network call to an approved
-  host. Opposite verdicts from the same engine, decided on evidence.
+- **Near-misses are the proof.** 6 harmful actions stopped (3 blocked, 3 held for review) and
+  4 benign actions cleared, 2 of them deliberate near-misses: a recursive delete that a pattern
+  matcher would block and measurement clears, and a network call to an approved host. Opposite
+  verdicts from the same engine, decided on evidence.
 - **Decide-only gateway.** FAAFO returns ALLOW / QUARANTINE / BLOCK measured in a disposable
   world. Wiring an ALLOW to the executor that runs it for real is the host application's job;
   FAAFO makes the decision safely before anything irreversible happens.

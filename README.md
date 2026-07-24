@@ -23,8 +23,8 @@ Fork Around & Find Out (FAAFO) is a fail-closed decision gateway for agent tool-
 4. A **fail-closed policy engine** turns that blast radius into `ALLOW` / `QUARANTINE` /
    `BLOCK`. Only an `ALLOW` is cleared to run for real. Everything else dies in the throwaway
    world, having touched nothing real.
-5. Every verdict is scored against a **labeled attack suite** and the scored rows are logged to
-   **Braintrust**, so the catch-rate is a real number, not a vibe.
+5. Every run of the **labeled attack suite** is scored per scenario, and those scored rows are
+   logged to **Braintrust** when a key is set, so the catch-rate is a real number, not a vibe.
 
 If the run can't be measured, the action is **blocked, never guessed.**
 

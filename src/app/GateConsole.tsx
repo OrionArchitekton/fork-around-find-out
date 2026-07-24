@@ -174,7 +174,7 @@ export default function GateConsole({
           <>
             <div className={`verdict ${v}`}>
               <div className="v">
-                {v === "ALLOW" ? "✓ ALLOW: cleared to run for real" : v === "QUARANTINE" ? "❖ QUARANTINE: held for review" : "✕ BLOCK: killed in the fork"}
+                {v === "ALLOW" ? "✓ ALLOW: cleared to run for real" : v === "QUARANTINE" ? "❖ QUARANTINE: held for review" : "✕ BLOCK: killed in the sandbox"}
               </div>
               <div className="sub">
                 {result.mode === "live" ? (
@@ -233,7 +233,7 @@ export default function GateConsole({
         {!result && !suite && (
           <p className="muted">
             Pick an action on the left, or give the agent a task above. It runs in a
-            forked sandbox first, so you see the consequences before the real world does.
+            disposable sandbox first, so you see the consequences before the real world does.
           </p>
         )}
       </div>

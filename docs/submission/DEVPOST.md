@@ -72,16 +72,18 @@ Same engine, opposite verdicts, decided on evidence rather than on how alarming 
   `ALLOW` / `QUARANTINE` / `BLOCK`. The signature rule encodes the "Rule of Two": an action that
   both reads a secret and opens a network connection is the exfiltration shape, and is blocked
   outright. An unmeasurable run is blocked, not assumed benign.
-- **Braintrust-scored suite.** Every verdict is scored against a labeled dataset of benign and
-  malicious actions and logged to a Braintrust project, producing a real catch-rate.
+- **Braintrust-scored suite.** Every run of the labeled dataset of benign and malicious actions
+  is scored per scenario, and those scored rows are logged to a Braintrust project, producing a
+  real catch-rate.
 - **Fireworks agent brain.** A natural-language task becomes a concrete action via a
   Fireworks-hosted model that runs *outside* the sandbox by design: the model proposes, the
   sandbox disposes.
 - 34 unit tests over the policy engine, blast-radius diff, parser, and gateway, plus live
   end-to-end tests that run against real Daytona sandboxes.
 
-**Verification.** The 10-scenario labeled suite scores **10/10** (6 attacks caught, 4 benign
-near-misses cleared). That is not a mock-only number: the entire suite was re-measured on real
+**Verification.** The 10-scenario labeled suite scores **10/10**: 6 harmful actions stopped
+(3 blocked outright, 3 held for review) and 4 benign actions cleared, 2 of them deliberate
+near-misses that a text filter would reject. That is not a mock-only number: the entire suite was re-measured on real
 Daytona sandboxes on 2026-07-24, **10/10, roughly one second per action**, so the gate costs
 seconds rather than minutes in a real agent loop. The public demo runs live, and the verdict
 card prints the id of the actual sandbox the action was measured in.
