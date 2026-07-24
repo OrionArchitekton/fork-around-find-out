@@ -178,6 +178,11 @@ export default function GateConsole({
 
         {result && br && (
           <>
+            {/* Bound to the result actually on screen, so it stays truthful
+                after a client-side run swaps a mock render for a live one. */}
+            <div className={`badge ${result.mode === "live" ? "on" : "mock"}`} style={{ marginBottom: 8, display: "inline-block" }}>
+              this result: {result.mode}
+            </div>
             <div className={`verdict ${v}`}>
               <div className="v">
                 {v === "ALLOW" ? "✓ ALLOW: cleared to run for real" : v === "QUARANTINE" ? "❖ QUARANTINE: held for review" : "✕ BLOCK: killed in the sandbox"}

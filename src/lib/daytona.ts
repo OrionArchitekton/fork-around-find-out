@@ -4,11 +4,11 @@ import type { ProposedAction } from "./types";
 import { APPROVED_HOSTS, type RuntimeConfig } from "./config";
 
 // The "world" is a Daytona sandbox. Before an action runs for real, the gateway
-// runs it in a FORK of the world, observes the consequences, and throws the fork
-// away. This module provides that fork-and-observe primitive in two modes:
+// runs it in a DISPOSABLE COPY of the world, observes the consequences, and
+// throws the copy away. Two modes:
 //   - mock: deterministic, offline, drives the stable demo (no key required)
-//   - live: a real Daytona fork; file diff, exit code, and canary-based secret
-//           reads are genuinely measured on the running sandbox.
+//   - live: a real Daytona sandbox; file diff, exit code, and canary-based
+//           secret reads are genuinely measured on the running sandbox.
 
 export interface WorldProvider {
   mode: "live" | "mock";

@@ -85,12 +85,10 @@ export default async function Home({
           <span className={`badge ${wired.daytona ? "on" : ""}`}>Daytona sandbox</span>
           <span className={`badge ${wired.braintrust ? "on" : ""}`}>Braintrust evals</span>
           <span className={`badge ${wired.fireworks ? "on" : ""}`}>Fireworks brain</span>
-          {/* Bound to the RESULT on screen, never to the environment: this
-              first render is always the deterministic mock, even on a
-              live-keyed deploy. Claiming "live" here would be a lie. */}
-          <span className={`badge ${initialResult.mode === "live" ? "on" : "mock"}`}>
-            this result: {initialResult.mode}
-          </span>
+          {/* The "this result" badge lives in GateConsole, next to the state it
+              describes. Rendering it here went stale the moment a client-side
+              run replaced the result, leaving the hero saying "mock" above a
+              verdict measured on a real sandbox. */}
         </div>
         <p className="muted" style={{ fontSize: 12, marginTop: 8 }}>
           {initialResult.mode === "live" ? (
@@ -126,8 +124,12 @@ export default async function Home({
           agent&apos;s world, runs the action there, and measures what it did: files created/modified/deleted,
           network egress, and whether it read a seeded secret honeytoken (caught even when the
           secret is sent in a request body, not just echoed to stdout). Network calls are{" "}
-          <b>captured, not forwarded</b>: the shim records the destination and body and then fails
-          the call, so a speculative run cannot perform the side effect it is being measured for. A{" "}
+          <b>captured, never forwarded</b>: the shim records the destination and body and never
+          runs the real tool, so a speculative run cannot perform the side effect it is being
+          measured for. An approved host still gets a success status back (nothing is sent) so the
+          rest of the command runs and is measured; a call to anywhere else fails and is recorded
+          as an interception, which forbids an ALLOW because the run diverged from reality after
+          that point. A{" "}
           <code className="inline">fail-closed</code> policy engine turns that blast radius into{" "}
           <code className="inline">ALLOW</code> / <code className="inline">QUARANTINE</code> /{" "}
           <code className="inline">BLOCK</code>. Only an <code className="inline">ALLOW</code> is
