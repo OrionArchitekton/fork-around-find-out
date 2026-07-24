@@ -11,7 +11,8 @@ Captions are next to it as `FAAFO-captions.srt` (optional, YouTube auto-captions
 
 1. Go to https://studio.youtube.com and click **Create > Upload videos**.
 2. Drop in `FAAFO-demo.mp4`.
-3. Paste the title and description from
+3. Under Thumbnail, upload **`FAAFO-thumbnail.png`** from the desktop.
+4. Paste the title and description from
    [`docs/submission/YOUTUBE.md`](YOUTUBE.md) (title, description with chapters, tags all
    written and dash-clean).
 4. **Not made for kids.**

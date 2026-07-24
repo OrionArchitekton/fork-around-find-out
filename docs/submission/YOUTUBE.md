@@ -45,6 +45,10 @@ Chapters:
 ## Tags (comma separated)
 AI agents, agent safety, Daytona, sandbox, Braintrust, Fireworks AI, prompt injection, exfiltration, fail closed, guardrails, hackathon, HackSprint, Claude Code, Cursor, developer tools, TypeScript, Next.js
 
+## Thumbnail
+Use `docs/submission/thumbnail.png` (also on the desktop as `FAAFO-thumbnail.png`):
+1280x720, built from the real live BLOCK frame with the sandbox id visible.
+
 ## Upload settings
 - Visibility: PUBLIC (Devpost judges must reach it logged out)
 - Made for kids: NO
