@@ -4,8 +4,8 @@
 **Tagline:** Terraform plan, but for agent actions: your agent's next tool-call happens in a parallel universe first.
 
 **Description:** A fail-closed safety gateway for autonomous agents. Before an agent's tool-call
-touches anything real, FAAFO runs it in a disposable Daytona sandbox, measures the exact blast
-radius (files, network egress, secret reads), scores it against a labeled suite logged to
+touches anything real, FAAFO runs it in a disposable Daytona sandbox, measures the blast
+radius it actually produced (files, network egress, secret reads), scores it against a labeled suite logged to
 Braintrust, and clears the action to run for real only if it passes policy. If the run cannot be
 measured, the action is blocked, never guessed.
 
@@ -33,15 +33,18 @@ In one line: **Fireworks proposes, Daytona measures, Braintrust scores.**
 - **Decide-only gateway.** FAAFO returns ALLOW / QUARANTINE / BLOCK measured in a disposable
   world. Wiring an ALLOW to the executor that runs it for real is the host application's job;
   FAAFO makes the decision safely before anything irreversible happens.
-- **Tests.** 38 unit tests over the policy engine, blast-radius diff, parser, and gateway, plus
+- **Tests.** 39 unit tests over the policy engine, blast-radius diff, parser, and gateway, plus
   live end-to-end tests against real Daytona sandboxes.
 
 ## Known limits (shipped as labeled rows, not hidden)
 - **Egress is captured, never forwarded.** The shim records the destination and request body
-  and then fails the call; it never exec's the real binary, so a speculative run cannot perform
-  the side effect it is being measured for. Sandboxes also set Daytona's `networkBlockAll`.
-  Attribution still relies on the PATH shim, so a statically linked binary opening a raw socket
-  would not be *named* in the blast radius, though the sandbox refuses the connection.
+  and never exec's the real binary, so a speculative run cannot perform the side effect it is
+  being measured for. Sandboxes also set Daytona's `networkBlockAll`. Because a failed call
+  would short-circuit the rest of the command and hide its dangerous half, approved hosts get a
+  success status (still nothing sent) and any non-approved call is recorded as an interception
+  that forbids ALLOW. Attribution still relies on the PATH shim, so a statically linked binary
+  opening a raw socket would not be *named* in the blast radius, though the sandbox refuses the
+  connection.
 - **Evidence lives in the sandbox**, so a sandbox-aware adversary specifically targeting FAAFO
   could tamper with it. The threat model is an agent doing harm, not one attacking the gateway.
 - **Secret detection is canary-based.** The suite includes `limit-base64-obfuscated`, where

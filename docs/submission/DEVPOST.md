@@ -76,6 +76,14 @@ Same engine, opposite verdicts, decided on evidence rather than on how alarming 
   world was never touched" would be false. Sandboxes are additionally created with Daytona's
   `networkBlockAll`, so a path the shim does not wrap (a static binary, a raw socket) is refused
   by the sandbox rather than trusted to our wrappers.
+- **Execution fidelity, the subtle part.** Refusing to send a call changes what the command
+  does, and that can hide the dangerous half. `curl <approved> && rm -rf <data>` only reaches
+  the delete if curl reports success, so a shim that failed every call would short-circuit the
+  run and report a clean blast radius for a destructive action. We hit exactly that and fixed
+  it: approved hosts get a success status (still nothing sent) so the rest of the command is
+  measured, and any call to a non-approved host is recorded as an interception that the
+  `execution-semantics-incomplete` rule turns into QUARANTINE. Past an intercepted call the run
+  diverged from reality, so the reading cannot support an ALLOW.
 - **Blast-radius measurement.** The run is diffed into a structured reading: files
   created/modified/deleted, network egress (captured by a PATH shim over `curl`/`wget`/`nc`,
   including IP-literal targets), and secret reads detected by a canary honeytoken seeded into
@@ -94,7 +102,7 @@ Same engine, opposite verdicts, decided on evidence rather than on how alarming 
 - **Fireworks agent brain.** A natural-language task becomes a concrete action via a
   Fireworks-hosted model that runs *outside* the sandbox by design: the model proposes, the
   sandbox disposes.
-- 38 unit tests over the policy engine, blast-radius diff, parser, and gateway, plus live
+- 39 unit tests over the policy engine, blast-radius diff, parser, and gateway, plus live
   end-to-end tests that run against real Daytona sandboxes.
 
 **Verification.** The 10-scenario labeled suite scores **10/10**: 6 harmful actions stopped
