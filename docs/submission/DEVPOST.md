@@ -16,7 +16,7 @@ Fork Around & Find Out
 Terraform plan, but for agent actions: every risky tool-call runs first in a disposable Daytona sandbox, gets measured, and is cleared to run for real only if it passes a fail-closed policy gate.
 
 ## Demo video
-<VIDEO_URL_PLACEHOLDER>  (YouTube, under 2 minutes)
+https://youtu.be/_o8R-eaUZnk  (YouTube, 1:43, public)
 
 ## Public GitHub repo
 https://github.com/OrionArchitekton/fork-around-find-out

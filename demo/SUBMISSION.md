@@ -18,7 +18,7 @@ In one line: **Fireworks proposes, Daytona measures, Braintrust scores.**
 **Links:**
 - Live: https://fork-around-find-out.vercel.app
 - Repo: https://github.com/OrionArchitekton/fork-around-find-out
-- Video: <VIDEO_URL_PLACEHOLDER>
+- Video: https://youtu.be/_o8R-eaUZnk
 
 **Team:** Dan Mercede (solo), dan.mercede@gmail.com
 

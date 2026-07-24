@@ -63,4 +63,4 @@ curl -s "https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=<ID>
 
 The title must come back matching the title above. Then paste the watch URL into the Devpost
 "Video demo link" field and into `docs/submission/DEVPOST.md` plus `demo/SUBMISSION.md`,
-replacing `<VIDEO_URL_PLACEHOLDER>`.
+replacing `https://youtu.be/_o8R-eaUZnk`.
