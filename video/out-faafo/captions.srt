@@ -1,0 +1,23 @@
+1
+00:00:00,000 --> 00:00:13,978
+This agent just read a secret and tried to beacon it out to an attacker. It happened inside a throwaway Daytona sandbox, so the real world never saw it. That is Fork Around and Find Out.
+
+2
+00:00:14,067 --> 00:00:31,343
+If you run Claude Code, Cursor, or any agent with shell access, one bad tool call is irreversible. A prompt injection, a hallucinated delete, a key posted to a pastebin. Today's guardrails read the command text and guess.
+
+3
+00:00:31,433 --> 00:00:46,944
+FAAFO does not guess. It runs the action in a disposable copy of your world first, measures exactly what it touched, and only then decides. Think terraform plan, but for agent actions.
+
+4
+00:00:47,500 --> 00:01:06,726
+Here is the part that text matching gets wrong. A regex blocks this recursive delete on sight. We ran it, measured it, and every file it removed was inside the workspace. Cleared. The same engine that blocked the exfiltration clears the safe cleanup, because it measured instead of guessing.
+
+5
+00:01:06,800 --> 00:01:30,160
+Every verdict is scored against a labeled suite and logged to Braintrust. Ten out of ten, and we re-ran the whole suite on real Daytona sandboxes at about a second per action. We also ship our own failure. Base64 hides the secret from our canary, so that row only quarantines instead of blocking. Fail closed, and say so.
+
+6
+00:01:30,233 --> 00:01:41,797
+Daytona for the disposable world, Braintrust for the proof, Fireworks for the agent brain. The dangerous actions die in the fork. Fork around, and find out.

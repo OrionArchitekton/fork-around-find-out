@@ -90,7 +90,14 @@ export default async function Home({
           </span>
         </div>
         <p className="muted" style={{ fontSize: 12, marginTop: 8 }}>
-          {mode === "live" ? (
+          {initialResult.mode === "live" ? (
+            <>
+              The result below was measured on a <b>real Daytona sandbox</b>, created and destroyed
+              for that one action. The default view uses a deterministic mock world so the page
+              renders identically every time; same policy engine and blast-radius code either way,
+              only the observation source differs.
+            </>
+          ) : mode === "live" ? (
             <>
               The result below is the <b>deterministic mock world</b> so the page renders the same
               way every time. Press <b>Run</b> and the action is measured on a{" "}

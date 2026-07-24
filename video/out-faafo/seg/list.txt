@@ -1,0 +1,6 @@
+file '/home/orion/src/orion-estate/personal-brand/hackathons/fork-around-find-out/video/out-faafo/seg/seg_0.ext.mp4'
+file '/home/orion/src/orion-estate/personal-brand/hackathons/fork-around-find-out/video/out-faafo/seg/seg_1.ext.mp4'
+file '/home/orion/src/orion-estate/personal-brand/hackathons/fork-around-find-out/video/out-faafo/seg/seg_2.mp4'
+file '/home/orion/src/orion-estate/personal-brand/hackathons/fork-around-find-out/video/out-faafo/seg/seg_3.ext.mp4'
+file '/home/orion/src/orion-estate/personal-brand/hackathons/fork-around-find-out/video/out-faafo/seg/seg_4.ext.mp4'
+file '/home/orion/src/orion-estate/personal-brand/hackathons/fork-around-find-out/video/out-faafo/seg/seg_5.mp4'

@@ -20,7 +20,7 @@ interface SuiteSummary {
   decisions: { scenarioId: string; label: string; harmful: boolean; verdict: string; correct: boolean }[];
 }
 
-const STEPS = ["Propose", "Fork world", "Run in fork", "Measure blast", "Decide"];
+const STEPS = ["Propose", "Copy world", "Run in copy", "Measure blast", "Decide"];
 
 export default function GateConsole({
   scenarios,
@@ -214,9 +214,11 @@ export default function GateConsole({
               </p>
             )}
 
+            {/* Decide-only: FAAFO never runs the action for real, so the clean
+                case must not imply a merge/execute step it does not perform. */}
             <ul className="findings">
               {result.decision.findings.length === 0 && (
-                <li className="ALLOW">No policy violations. Action is safe to merge.</li>
+                <li className="ALLOW">No policy violations. Cleared to run for real.</li>
               )}
               {result.decision.findings.map((f) => (
                 <li key={f.ruleId} className={f.severity}>

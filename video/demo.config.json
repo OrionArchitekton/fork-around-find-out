@@ -1,0 +1,23 @@
+{
+  "script": "/home/orion/src/orion-estate/personal-brand/hackathons/fork-around-find-out/video/DEMO_VIDEO.md",
+  "dashboardBaseUrl": "https://fork-around-find-out.vercel.app",
+  "out": "/home/orion/src/orion-estate/personal-brand/hackathons/fork-around-find-out/video/out-faafo",
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "fps": 30,
+  "voice": {
+    "modelId": "eleven_multilingual_v2",
+    "seed": 4224
+  },
+  "motion": {
+    "baseZoom": 1.02,
+    "driftAmp": 0.008,
+    "zoomLevel": 1.28
+  },
+  "theme": {
+    "captions": "wordpop",
+    "captionAccent": "#ff5252"
+  }
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "kind": "highlight",
+    "tMs": 1957,
+    "box": {
+      "x": 831,
+      "y": 481,
+      "width": 618,
+      "height": 91
+    }
+  },
+  {
+    "kind": "highlight",
+    "tMs": 3173,
+    "box": {
+      "x": 831,
+      "y": 586,
+      "width": 618,
+      "height": 118
+    }
+  }
+]
