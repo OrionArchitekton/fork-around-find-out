@@ -79,11 +79,14 @@ Honesty matters here, so the boundary is explicit:
   detected with a canary honeytoken seeded into the workspace `.env`; the network shim captures
   both `@file` arguments and piped stdin, so a secret sent in a request body is caught, not just
   one echoed to stdout. Network egress is captured for standard tools (`curl`/`wget`/`nc`) via a
-  PATH shim that logs the target host, not a kernel-level tap. If no disposable world can be
-  created at all, the run fails closed (`BLOCK`), never silently running somewhere real.
+  PATH shim that logs the target host, not a kernel-level tap. The shim is **capture-only**: it
+  records the destination and the request body and then fails the call rather than exec'ing the
+  real binary, so a speculative run cannot perform the side effect it is being measured for.
+  Sandboxes are additionally created with Daytona's `networkBlockAll`. If no disposable world can
+  be created at all, the run fails closed (`BLOCK`), never silently running somewhere real.
 
   The whole labeled suite was re-measured live on real Daytona sandboxes on 2026-07-24:
-  **10/10 correct, about one second per action.** Reproduce with
+  **10/10 correct, median about one second per action.** Reproduce with
   `FAAFO_LIVE_E2E=1 DAYTONA_API_KEY=... npx vitest run suite.live`.
 - **Mock mode** (no key): the attack-suite scenarios return recorded real observations; the
   free-text box uses a transparent static reading of the command. Labeled `this result: mock`

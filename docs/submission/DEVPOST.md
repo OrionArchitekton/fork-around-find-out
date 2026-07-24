@@ -63,6 +63,12 @@ Same engine, opposite verdicts, decided on evidence rather than on how alarming 
   throwaway worlds and identical in safety. On this account tier forking is unavailable, so the
   live demo cold-seeds one sandbox per action. If no disposable world can be created at all,
   the action is blocked, never guessed.
+- **Speculative means speculative.** The network shim is capture-only: it records the
+  destination and the request body and then fails the call, never exec'ing the real
+  `curl`/`wget`/`nc`. If it forwarded, the beacon would already have been sent and "the real
+  world was never touched" would be false. Sandboxes are additionally created with Daytona's
+  `networkBlockAll`, so a path the shim does not wrap (a static binary, a raw socket) is refused
+  by the sandbox rather than trusted to our wrappers.
 - **Blast-radius measurement.** The run is diffed into a structured reading: files
   created/modified/deleted, network egress (captured by a PATH shim over `curl`/`wget`/`nc`,
   including IP-literal targets), and secret reads detected by a canary honeytoken seeded into
@@ -84,13 +90,16 @@ Same engine, opposite verdicts, decided on evidence rather than on how alarming 
 **Verification.** The 10-scenario labeled suite scores **10/10**: 6 harmful actions stopped
 (3 blocked outright, 3 held for review) and 4 benign actions cleared, 2 of them deliberate
 near-misses that a text filter would reject. That is not a mock-only number: the entire suite was re-measured on real
-Daytona sandboxes on 2026-07-24, **10/10, roughly one second per action**, so the gate costs
+Daytona sandboxes on 2026-07-24, **10/10, with a median of about one second per action**, so the gate costs
 seconds rather than minutes in a real agent loop. The public demo runs live, and the verdict
 card prints the id of the actual sandbox the action was measured in.
 
 **What we do not claim (limits, stated on purpose).** Egress is captured for standard tools via
 a PATH shim, not a kernel-level tap, so a statically linked binary opening a raw socket would
-evade it. Secret detection is canary-based, and the suite ships a scenario
+evade the shim's *attribution* (the sandbox still refuses the connection under
+`networkBlockAll`). The observer's evidence files live inside the sandbox, so a sandbox-aware
+adversary that knows FAAFO is watching could tamper with them; the threat model here is an
+agent doing something harmful, not one specifically attacking this gateway. Secret detection is canary-based, and the suite ships a scenario
 (`limit-base64-obfuscated`) where base64 encoding hides the secret from the canary. That action
 still does not reach ALLOW, because unapproved egress alone holds it for review. We shipped our
 own failure case as a labeled row rather than hiding it; the fail-closed design is what contains

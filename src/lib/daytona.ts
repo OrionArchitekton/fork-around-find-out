@@ -79,19 +79,33 @@ export class MockProvider implements WorldProvider {
 // caught even if the file path is obscured. It prints one JSON line we parse.
 function observerScript(command: string, workspace: string): string {
   const b64 = Buffer.from(command, "utf8").toString("base64");
-  // The network shim: logs target hosts, captures @file payloads AND piped
-  // stdin (so a secret sent in a request BODY is seen, not just one echoed to
-  // stdout), then passes traffic through to the real tool. __REAL__ is replaced
-  // with the resolved binary path by the observer. Base64'd to dodge nested
-  // shell-quoting entirely.
+  // The network shim logs target hosts and captures @file payloads AND piped
+  // stdin, so a secret sent in a request BODY is seen, not just one echoed to
+  // stdout. Base64'd to dodge nested shell-quoting entirely.
+  //
+  // CAPTURE-ONLY. The shim records the destination and the payload and then
+  // fails the call. It never execs the real binary.
+  //
+  // This is the difference between speculating and doing. If the shim forwarded
+  // to the real curl, then "we ran it in a sandbox first" would still have sent
+  // the beacon, charged the card, or deleted the remote object: the side effect
+  // we are measuring would already have happened, and "the real world was never
+  // touched" would be false. Sandbox egress restrictions are not a substitute,
+  // because they are a property of the tier we happen to be on, not a control
+  // this gateway enforces.
+  //
+  // Exit 6 mirrors curl's "could not resolve host", so a script that checks the
+  // exit status sees a plausible network failure.
   const shimBody = [
     "#!/bin/sh",
     'for a in "$@"; do echo "$a" | grep -oE "(([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}|([0-9]{1,3}\\.){3}[0-9]{1,3})(:[0-9]+)?" >> /tmp/faafo/egress.log; done',
     'for a in "$@"; do case "$a" in @?*) f=${a#@}; [ -f "$f" ] && cat "$f" >> /tmp/faafo/payload.log 2>/dev/null;; esac; done',
-    // Tee ONLY for a genuine pipe. `! -t 0` is wrong: with no stdin the shim
-    // still enters tee, which then consumes the observer script's own stdin and
-    // swallows the rest of the script (the JSON emitter never runs).
-    'if [ -p /dev/stdin ]; then tee -a /tmp/faafo/payload.log | __REAL__ "$@"; else __REAL__ "$@"; fi',
+    // Drain a genuine pipe so the payload is captured and the writer does not
+    // block. Guarding on `-p` matters: with no stdin at all, reading here would
+    // consume the observer script's own stdin and swallow the rest of it.
+    'if [ -p /dev/stdin ]; then cat >> /tmp/faafo/payload.log; fi',
+    'echo "faafo: speculative network call captured, not sent" >&2',
+    "exit 6",
   ].join("\n");
   const shim64 = Buffer.from(shimBody, "utf8").toString("base64");
   // One self-contained exec: snapshot before, run under the shim, snapshot
@@ -114,8 +128,7 @@ for root in [ws,"/etc","/var/tmp"]:
 print(json.dumps(d))
 PY
 for t in curl wget nc; do
-  real=$(command -v $t 2>/dev/null) || continue
-  echo "${shim64}" | base64 -d | sed "s|__REAL__|$real|g" > /tmp/faafo/bin/$t
+  echo "${shim64}" | base64 -d > /tmp/faafo/bin/$t
   chmod +x /tmp/faafo/bin/$t
 done
 export PATH=/tmp/faafo/bin:$PATH
@@ -247,7 +260,12 @@ export interface DisposableWorld {
 async function acquireDisposableWorld(daytona: any): Promise<DisposableWorld | null> {
   let base: any = null;
   try {
-    base = await daytona.create({ language: "python" });
+    // networkBlockAll is defense in depth, not the control. The shim is
+    // capture-only and never execs the real binary, so nothing should reach the
+    // network in the first place; this makes the sandbox refuse anything the
+    // shim does not cover (a static binary, a raw socket) rather than trusting
+    // that our wrappers caught every path.
+    base = await daytona.create({ language: "python", networkBlockAll: true });
     const workspace = await resolveWorkspace(base);
     await execInSandbox(base, seedCommand(workspace));
 

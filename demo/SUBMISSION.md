@@ -22,7 +22,7 @@ Fireworks AI (agent brain), Vitest, Vercel.
 ## What is real (and how it was verified)
 - **Live, not simulated.** The deployed demo measures on real Daytona sandboxes; the verdict
   card prints the id of the sandbox the action ran in. The full 10-scenario suite was
-  re-measured live on 2026-07-24: **10/10 correct, about one second per action**.
+  re-measured live on 2026-07-24: **10/10 correct, median about one second per action**.
 - **Near-misses are the proof.** 6 harmful actions stopped (3 blocked, 3 held for review) and
   4 benign actions cleared, 2 of them deliberate near-misses: a recursive delete that a pattern
   matcher would block and measurement clears, and a network call to an approved host. Opposite
@@ -34,8 +34,13 @@ Fireworks AI (agent brain), Vitest, Vercel.
   live end-to-end tests against real Daytona sandboxes.
 
 ## Known limits (shipped as labeled rows, not hidden)
-- **Egress capture** uses a PATH shim over `curl`/`wget`/`nc`, not a kernel-level tap: a
-  statically linked binary opening a raw socket would evade it.
+- **Egress is captured, never forwarded.** The shim records the destination and request body
+  and then fails the call; it never exec's the real binary, so a speculative run cannot perform
+  the side effect it is being measured for. Sandboxes also set Daytona's `networkBlockAll`.
+  Attribution still relies on the PATH shim, so a statically linked binary opening a raw socket
+  would not be *named* in the blast radius, though the sandbox refuses the connection.
+- **Evidence lives in the sandbox**, so a sandbox-aware adversary specifically targeting FAAFO
+  could tamper with it. The threat model is an agent doing harm, not one attacking the gateway.
 - **Secret detection is canary-based.** The suite includes `limit-base64-obfuscated`, where
   base64 hides the secret from the canary. The action still cannot reach ALLOW, because
   unapproved egress alone holds it for review. Fail-closed design contains the gap.

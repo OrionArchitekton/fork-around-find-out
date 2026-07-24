@@ -122,3 +122,47 @@ describe("evaluate: the fail-closed gate", () => {
     expect(DEFAULT_RULES.length).toBeGreaterThanOrEqual(5);
   });
 });
+
+describe("network allowlist matches hosts, not string prefixes", () => {
+  // An attacker registers a domain that STARTS WITH an allowlisted one. A
+  // prefix test would wave the exfiltration straight through.
+  it("does not treat api.internal.evil.com as the allowlisted api.internal", () => {
+    const d = evaluate(
+      br({ networkEgress: [{ host: "api.internal.evil.com", port: 443 }] }),
+      ctx,
+      DEFAULT_RULES,
+    );
+    expect(d.verdict).toBe("QUARANTINE");
+    expect(d.findings.map((f) => f.ruleId)).toContain("unapproved-network-egress");
+  });
+
+  it("does not treat registry.npmjs.org.attacker.net as approved", () => {
+    const d = evaluate(
+      br({ networkEgress: [{ host: "registry.npmjs.org.attacker.net", port: 443 }] }),
+      ctx,
+      DEFAULT_RULES,
+    );
+    expect(d.verdict).toBe("QUARANTINE");
+  });
+
+  it("still allows the exact host and its subdomains", () => {
+    expect(
+      evaluate(br({ networkEgress: [{ host: "api.internal", port: 443 }] }), ctx, DEFAULT_RULES)
+        .verdict,
+    ).toBe("ALLOW");
+    expect(
+      evaluate(
+        br({ networkEgress: [{ host: "eu.api.internal", port: 443 }] }),
+        ctx,
+        DEFAULT_RULES,
+      ).verdict,
+    ).toBe("ALLOW");
+  });
+
+  it("is case-insensitive and tolerates a trailing dot", () => {
+    expect(
+      evaluate(br({ networkEgress: [{ host: "API.Internal.", port: 443 }] }), ctx, DEFAULT_RULES)
+        .verdict,
+    ).toBe("ALLOW");
+  });
+});

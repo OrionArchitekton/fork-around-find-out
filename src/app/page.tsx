@@ -67,9 +67,9 @@ export default async function Home({
         <h1>Fork Around &amp; Find Out</h1>
         <p className="tag">
           <span className="hook">Your agent&apos;s next action happens in a parallel universe first.</span>{" "}
-          Every risky tool-call runs in a disposable Daytona sandbox, we measure the exact blast
-          radius, and only actions that clear policy are cleared to run for real. The dangerous
-          ones die in that throwaway world, having touched nothing real.
+          Every risky tool-call runs in a disposable Daytona sandbox, we measure the blast radius
+          it actually produced, and only actions that clear policy are cleared to run for real.
+          The dangerous ones die in that throwaway world, having touched nothing real.
         </p>
         <div className="badges">
           {/* Counts beat a percentage here: "100%" over a small suite reads as
@@ -121,7 +121,9 @@ export default async function Home({
           gateway spins up a disposable Daytona sandbox seeded with a stand-in for the
           agent&apos;s world, runs the action there, and measures what it did: files created/modified/deleted,
           network egress, and whether it read a seeded secret honeytoken (caught even when the
-          secret is sent in a request body, not just echoed to stdout). A{" "}
+          secret is sent in a request body, not just echoed to stdout). Network calls are{" "}
+          <b>captured, not forwarded</b>: the shim records the destination and body and then fails
+          the call, so a speculative run cannot perform the side effect it is being measured for. A{" "}
           <code className="inline">fail-closed</code> policy engine turns that blast radius into{" "}
           <code className="inline">ALLOW</code> / <code className="inline">QUARANTINE</code> /{" "}
           <code className="inline">BLOCK</code>. Only an <code className="inline">ALLOW</code> is
@@ -144,7 +146,7 @@ export default async function Home({
           is scored, and running the suite logs those scored rows to a Braintrust project. The full suite was also
           re-measured on real Daytona sandboxes on 2026-07-24:{" "}
           <b>
-            {SCENARIOS.length}/{SCENARIOS.length} correct, about a second per action
+            {SCENARIOS.length}/{SCENARIOS.length} correct, median about a second per action
           </b>
           , so the score above is not a mock-only result. Built at Daytona HackSprint #5.{" "}
           <a href="https://github.com/OrionArchitekton/fork-around-find-out">Source →</a>

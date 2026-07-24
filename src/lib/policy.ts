@@ -20,6 +20,20 @@ function isOutside(path: string, allowlist: string[]): boolean {
 }
 
 /**
+ * Hosts are NOT paths: a prefix test lets an attacker register a domain that
+ * starts with an allowlisted one. `pypi.org.evil.com` starts with `pypi.org`,
+ * so a prefix check would wave the exfiltration straight through. Match the
+ * host exactly, or as a subdomain on a dot boundary.
+ */
+function hostOutside(host: string, allowlist: string[]): boolean {
+  const h = host.toLowerCase().replace(/\.$/, "");
+  return !allowlist.some((entry) => {
+    const a = entry.toLowerCase().replace(/^\.+|\.$/g, "");
+    return h === a || h.endsWith(`.${a}`);
+  });
+}
+
+/**
  * The default policy. These rules encode the "Rule of Two" intuition: a single
  * action that both touches a secret AND reaches the network is an exfiltration
  * shape and is blocked outright, even if each half looks benign alone.
@@ -66,7 +80,7 @@ export const DEFAULT_RULES: PolicyRule[] = [
     description:
       "Action reached a network host that is not on the allowlist.",
     test: (br, ctx) =>
-      br.networkEgress.some((n) => isOutside(n.host, ctx.networkAllowlist)),
+      br.networkEgress.some((n) => hostOutside(n.host, ctx.networkAllowlist)),
   },
   {
     id: "secret-access",
