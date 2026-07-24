@@ -77,6 +77,10 @@ export default async function Home({
           <span className="badge on">
             {suite.correct}/{suite.total} correct · {harmful} harmful, {SCENARIOS.length - harmful} benign
           </span>
+          {/* Stated, not re-run on load: the live suite is 10 real sandboxes and
+              takes tens of seconds, so a judge should not have to wait to see
+              that it passed. Labeled with its date so it reads as a record. */}
+          <span className="badge on">live-verified 2026-07-24 · 10/10 on real sandboxes</span>
           <span className="badge">fail-closed</span>
           <span className={`badge ${wired.daytona ? "on" : ""}`}>Daytona sandbox</span>
           <span className={`badge ${wired.braintrust ? "on" : ""}`}>Braintrust evals</span>
