@@ -4,7 +4,7 @@ import { runSuite } from "@/lib/gateway";
 export const runtime = "nodejs";
 export const maxDuration = 120;
 
-// POST /api/suite — run the whole attack suite through the gate and return the
+// POST /api/suite: run the whole attack suite through the gate and return the
 // scored summary (catch-rate, pass-rate, per-scenario) plus the Braintrust
 // experiment link when a key is configured.
 export async function POST() {

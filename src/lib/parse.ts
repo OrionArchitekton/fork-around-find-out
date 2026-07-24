@@ -1,7 +1,7 @@
 import type { ProposedAction } from "./types";
 
 // Defensive parsing of the proposed action. The action can come from an LLM or
-// an untrusted client, so we never trust its shape — we validate and clamp, and
+// an untrusted client, so we never trust its shape: we validate and clamp, and
 // reject anything we cannot turn into a safe, well-formed ProposedAction.
 
 const MAX_COMMAND_LEN = 4000;
@@ -14,7 +14,7 @@ function asString(v: unknown): string | null {
 
 /**
  * Parse an untrusted payload into a ProposedAction. Throws ParseError with a
- * human-readable reason on anything malformed — the caller turns that into a
+ * human-readable reason on anything malformed: the caller turns that into a
  * fail-closed BLOCK rather than executing a mystery command.
  */
 export function parseProposedAction(input: unknown): ProposedAction {

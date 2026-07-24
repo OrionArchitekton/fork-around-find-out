@@ -29,7 +29,7 @@ describe("moreSevere", () => {
   });
 });
 
-describe("evaluate — the fail-closed gate", () => {
+describe("evaluate: the fail-closed gate", () => {
   it("ALLOWs and merges a benign in-workspace write", () => {
     const d = evaluate(
       br({ filesCreated: ["/workspace/out.txt"], bytesWritten: 12 }),

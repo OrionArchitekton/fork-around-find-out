@@ -4,8 +4,9 @@ import type { RuntimeConfig } from "./config";
 
 // Braintrust is the verification leg: we score the gate's decisions against the
 // golden attack dataset (SCENARIOS) and surface a catch-rate. The scoring math
-// is real even without a key; when BRAINTRUST_API_KEY is set we ALSO log the
-// experiment so a judge can open the traces and score columns in Braintrust.
+// is real even without a key; when BRAINTRUST_API_KEY is set we ALSO log each
+// scored row (input, verdict, expected, correct-ness, blast radius) to the
+// Braintrust project "fork-around-find-out" so it can be inspected there.
 
 export interface ScoredDecision {
   scenarioId: string;
@@ -56,9 +57,9 @@ export function summarize(decisions: ScoredDecision[]): Omit<EvalSummary, "exper
 }
 
 /**
- * Log the scored suite to Braintrust when a key is present. Returns the
- * experiment permalink if logging succeeded. Never throws — a logging failure
- * must not break the gate.
+ * Log the scored suite to Braintrust when a key is present. Returns
+ * { logged: true } when the rows were written to the project. Never throws: a
+ * logging failure must not break the gate.
  */
 export async function logExperiment(
   cfg: RuntimeConfig,

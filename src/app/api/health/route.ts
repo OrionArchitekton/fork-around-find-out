@@ -3,7 +3,7 @@ import { loadConfig, worldMode } from "@/lib/config";
 
 export const runtime = "nodejs";
 
-// GET /api/health — liveness + which sponsors are wired (names only, no values).
+// GET /api/health: liveness + which sponsors are wired (names only, no values).
 export async function GET() {
   const cfg = loadConfig();
   return NextResponse.json({

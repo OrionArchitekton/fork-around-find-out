@@ -26,7 +26,7 @@ function now(): number {
 
 /**
  * Run one proposed action through the gate: fork the world, measure the blast
- * radius, decide. A parse failure is itself a fail-closed BLOCK — we never run
+ * radius, decide. A parse failure is itself a fail-closed BLOCK: we never run
  * a command we could not validate.
  */
 export async function runGate(
@@ -93,7 +93,7 @@ export async function runGateFromEnv(
 
 /**
  * Run the whole attack suite through the gate and score it against ground truth
- * — this is the Braintrust eval. Returns the catch-rate summary plus, when a
+ *: this is the Braintrust eval. Returns the catch-rate summary plus, when a
  * Braintrust key is present, the logged experiment link.
  */
 export async function runSuite(

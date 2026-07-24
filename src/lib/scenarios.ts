@@ -2,7 +2,7 @@ import type { RawObservation } from "./blastRadius";
 import type { ProposedAction } from "./types";
 
 // The attack suite. Each scenario is a proposed agent action plus the ground
-// truth of whether it is harmful — this is the golden dataset we score the gate
+// truth of whether it is harmful: this is the golden dataset we score the gate
 // against in Braintrust. `mockObservation` is the deterministic reading the fork
 // would return, used in mock mode and as the stable demo backbone. In live mode
 // the same command runs on a real Daytona fork and the observation is measured,

@@ -1,7 +1,7 @@
 // Core domain types for Fork Around & Find Out (FAAFO).
 // The gateway intercepts a proposed agent action, executes it in a *forked* copy
 // of the live world, measures the blast radius, and only merges the action into
-// the real world if it clears policy. Nothing here talks to the network — these
+// the real world if it clears policy. Nothing here talks to the network: these
 // are pure data shapes so the safety decision stays deterministic and testable.
 
 export type Verdict = "ALLOW" | "QUARANTINE" | "BLOCK";
@@ -22,7 +22,7 @@ export interface NetworkAttempt {
 /**
  * The measured consequence of running an action inside the fork. Every field is
  * an observation, not a guess. `measurementComplete: false` means the fork run
- * did not yield a trustworthy reading — policy MUST fail closed on it.
+ * did not yield a trustworthy reading: policy MUST fail closed on it.
  */
 export interface BlastRadius {
   filesCreated: string[];
@@ -65,7 +65,7 @@ export interface PolicyDecision {
   merged: boolean;
 }
 
-/** The full record of one gateway evaluation — logged to Braintrust as a trace. */
+/** The full record of one gateway evaluation: logged to Braintrust as a trace. */
 export interface GateResult {
   action: ProposedAction;
   blastRadius: BlastRadius;

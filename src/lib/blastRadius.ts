@@ -18,7 +18,7 @@ export interface RawObservation {
   /** Raw "host:port" strings sniffed from the fork's egress. */
   networkEgress: string[];
   secretsRead: string[];
-  /** False if any capture step failed — forces policy to fail closed. */
+  /** False if any capture step failed: forces policy to fail closed. */
   measurementComplete: boolean;
 }
 

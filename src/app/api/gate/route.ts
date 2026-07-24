@@ -5,7 +5,7 @@ import { loadConfig, worldMode } from "@/lib/config";
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-// POST /api/gate — evaluate one proposed action through the fork gateway.
+// POST /api/gate: evaluate one proposed action through the fork gateway.
 // Body: { command: string, tool?: string, rationale?: string }
 export async function POST(req: Request) {
   let body: unknown;

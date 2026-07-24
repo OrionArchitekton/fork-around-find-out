@@ -163,11 +163,9 @@ export default function GateConsole({
               </div>
             ))}
             <p className="muted" style={{ fontSize: 12, marginTop: 10 }}>
-              {suite.logged && suite.experimentUrl ? (
-                <a href={suite.experimentUrl}>Open the scored experiment in Braintrust →</a>
-              ) : (
-                "Scored against the golden dataset locally. Set BRAINTRUST_API_KEY to log the experiment."
-              )}
+              {suite.logged
+                ? "Scored rows logged to the Braintrust project 'fork-around-find-out'."
+                : "Scored against the golden attack suite. Set BRAINTRUST_API_KEY to log the scored rows to Braintrust."}
             </p>
           </div>
         )}
@@ -176,11 +174,14 @@ export default function GateConsole({
           <>
             <div className={`verdict ${v}`}>
               <div className="v">
-                {v === "ALLOW" ? "✓ ALLOW — merged to real world" : v === "QUARANTINE" ? "❖ QUARANTINE — held for review" : "✕ BLOCK — discarded in the fork"}
+                {v === "ALLOW" ? "✓ ALLOW: cleared to run for real" : v === "QUARANTINE" ? "❖ QUARANTINE: held for review" : "✕ BLOCK: killed in the fork"}
               </div>
               <div className="sub">
-                Action ran in a <b>{result.mode}</b> fork. The real world was{" "}
-                {result.decision.merged ? "updated." : "never touched."} ({result.elapsedMs}ms)
+                Action ran in a <b>{result.mode}</b> fork.{" "}
+                {result.decision.merged
+                  ? "Clean blast radius, so it would be cleared to run for real."
+                  : "The real world was never touched."}{" "}
+                ({result.elapsedMs}ms)
               </div>
             </div>
 
@@ -190,7 +191,7 @@ export default function GateConsole({
               <Metric k="Files deleted" val={br.filesDeleted.length} hot={br.filesDeleted.length > 0} />
               <Metric k="Net egress" val={br.networkEgress.length} hot={br.networkEgress.length > 0} />
               <Metric k="Secrets read" val={br.secretsRead.length} hot={br.secretsRead.length > 0} />
-              <Metric k="Exit code" val={br.exitCode ?? "—"} />
+              <Metric k="Exit code" val={br.exitCode ?? "n/a"} />
             </div>
 
             {br.networkEgress.length > 0 && (
@@ -216,7 +217,7 @@ export default function GateConsole({
         {!result && !suite && (
           <p className="muted">
             Pick an action on the left, or give the agent a task above. It runs in a
-            forked sandbox first — you see the consequences before the real world does.
+            forked sandbox first, so you see the consequences before the real world does.
           </p>
         )}
       </div>

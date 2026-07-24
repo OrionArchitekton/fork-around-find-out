@@ -39,7 +39,7 @@ export const DEFAULT_RULES: PolicyRule[] = [
     id: "exfiltration-secret-plus-egress",
     severity: "BLOCK",
     description:
-      "Action read a sensitive file AND opened a network connection — the classic exfiltration pattern.",
+      "Action read a sensitive file AND opened a network connection: the classic exfiltration pattern.",
     test: (br) => br.secretsRead.length > 0 && br.networkEgress.length > 0,
   },
   {
@@ -94,7 +94,7 @@ export function evaluate(
     try {
       fired = rule.test(br, ctx);
     } catch {
-      // A rule that throws is treated as firing at its declared severity —
+      // A rule that throws is treated as firing at its declared severity :
       // a broken safety check must never silently pass an action.
       fired = true;
     }

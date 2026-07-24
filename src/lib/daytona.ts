@@ -27,7 +27,7 @@ const CLEAN_TREE: Record<string, string> = {
 
 /**
  * Best-effort static reading of a free-text command, used only in mock mode so
- * the "type your own command" box still works offline. Clearly heuristic — the
+ * the "type your own command" box still works offline. Clearly heuristic: the
  * live provider measures instead of guessing.
  */
 export function staticObservation(command: string): RawObservation {
@@ -79,15 +79,27 @@ export class MockProvider implements WorldProvider {
 // caught even if the file path is obscured. It prints one JSON line we parse.
 function observerScript(command: string): string {
   const b64 = Buffer.from(command, "utf8").toString("base64");
+  // The network shim: logs target hosts, captures @file payloads AND piped
+  // stdin (so a secret sent in a request BODY is seen, not just one echoed to
+  // stdout), then passes traffic through to the real tool. __REAL__ is replaced
+  // with the resolved binary path by the observer. Base64'd to dodge nested
+  // shell-quoting entirely.
+  const shimBody = [
+    "#!/bin/sh",
+    'for a in "$@"; do echo "$a" | grep -oE "(([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}|([0-9]{1,3}\\.){3}[0-9]{1,3})(:[0-9]+)?" >> /tmp/faafo/egress.log; done',
+    'for a in "$@"; do case "$a" in @?*) f=${a#@}; [ -f "$f" ] && cat "$f" >> /tmp/faafo/payload.log 2>/dev/null;; esac; done',
+    'if [ ! -t 0 ]; then tee -a /tmp/faafo/payload.log | __REAL__ "$@"; else __REAL__ "$@"; fi',
+  ].join("\n");
+  const shim64 = Buffer.from(shimBody, "utf8").toString("base64");
   return `
 set +e
 SCAN="/workspace /etc /var/tmp"
 snap() { find $SCAN -type f 2>/dev/null -exec sha256sum {} + 2>/dev/null | awk '{print $2":"$1}'; }
 BEFORE=$(snap)
-mkdir -p /tmp/faafo/bin; : > /tmp/faafo/egress.log
+mkdir -p /tmp/faafo/bin; : > /tmp/faafo/egress.log; : > /tmp/faafo/payload.log
 for t in curl wget nc; do
   real=$(command -v $t 2>/dev/null) || continue
-  printf '#!/bin/sh\\nfor a in "$@"; do echo "$a" | grep -oE "([a-zA-Z0-9.-]+\\\\.[a-zA-Z]{2,})(:[0-9]+)?" >> /tmp/faafo/egress.log; done\\nexec %s "$@"\\n' "$real" > /tmp/faafo/bin/$t
+  echo "${shim64}" | base64 -d | sed "s|__REAL__|$real|g" > /tmp/faafo/bin/$t
   chmod +x /tmp/faafo/bin/$t
 done
 export PATH=/tmp/faafo/bin:$PATH
@@ -95,10 +107,10 @@ CMD=$(echo ${b64} | base64 -d)
 OUT=$(sh -c "$CMD" 2>&1); CODE=$?
 AFTER=$(snap)
 CANARY_HIT=0
-echo "$OUT" | grep -q "${CANARY}" && CANARY_HIT=1
+{ echo "$OUT"; cat /tmp/faafo/payload.log 2>/dev/null; } | grep -q "${CANARY}" && CANARY_HIT=1
 EGRESS=$(sort -u /tmp/faafo/egress.log 2>/dev/null | tr '\\n' ',' )
 python3 - "$CODE" "$CANARY_HIT" "$EGRESS" <<'PY'
-import sys, json, hashlib, subprocess
+import sys, json, hashlib
 code=int(sys.argv[1]); canary=sys.argv[2]=="1"; egress=[e for e in sys.argv[3].split(',') if e]
 def snap_now():
     import os
@@ -146,8 +158,13 @@ export class LiveDaytonaProvider implements WorldProvider {
         apiUrl: this.cfg.daytonaUrl,
       });
 
-      const base = await getOrCreateWorld(daytona);
+      const base = await createSeededWorld(daytona);
       const fork = await forkSandbox(base);
+      // No real fork/snapshot isolation -> fail closed (BLOCK), never run in base.
+      if (!fork) {
+        await destroySandbox(base).catch(() => {});
+        return incomplete;
+      }
       try {
         const beforeFiles = await snapshotFiles(fork);
         const res = await execInSandbox(fork, observerScript(action.command));
@@ -163,7 +180,9 @@ export class LiveDaytonaProvider implements WorldProvider {
           measurementComplete: true,
         };
       } finally {
+        // Fork first (a parent with live forks can refuse deletion), then base.
         await destroySandbox(fork).catch(() => {});
+        await destroySandbox(base).catch(() => {});
       }
     } catch {
       return incomplete;
@@ -173,7 +192,7 @@ export class LiveDaytonaProvider implements WorldProvider {
 
 // The SDK surface differs slightly across versions; these adapters keep the
 // call sites tolerant. Verified against the live SDK in the Day-0 spike.
-async function getOrCreateWorld(daytona: any): Promise<any> {
+async function createSeededWorld(daytona: any): Promise<any> {
   const sandbox = await daytona.create({
     language: "python",
     envVars: {},
@@ -191,7 +210,10 @@ async function forkSandbox(base: any): Promise<any> {
     const snap = await base.snapshot();
     return base.daytona?.create?.({ snapshot: snap.id ?? snap });
   }
-  return base; // last resort: run in the base (still measured, no isolation)
+  // No real isolation available: fail closed. Returning null makes runInFork
+  // report an incomplete measurement, which the policy engine turns into BLOCK :
+  // we never run an action in the base world pretending it was a fork.
+  return null;
 }
 
 async function snapshotFiles(sandbox: any): Promise<Record<string, string>> {

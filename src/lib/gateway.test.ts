@@ -8,7 +8,7 @@ import type { RawObservation } from "./blastRadius";
 
 const provider = new MockProvider();
 
-describe("runGate — end to end over the attack suite (mock world)", () => {
+describe("runGate: end to end over the attack suite (mock world)", () => {
   it("reaches the right verdict for every scenario", async () => {
     const scored = [];
     for (const scn of SCENARIOS) {

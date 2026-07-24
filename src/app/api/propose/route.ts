@@ -5,9 +5,10 @@ import { loadConfig } from "@/lib/config";
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-// POST /api/propose — the agent brain turns a natural-language task into a
-// concrete shell action. This is the LIVE AI path; the action it returns is
-// then meant to be sent to /api/gate (never executed directly).
+// POST /api/propose: the agent brain turns a natural-language task into a
+// concrete shell action. This is the AI path when an LLM key is set; without a
+// key it returns a transparent stub. The action it returns is then meant to be
+// sent to /api/gate (never executed directly).
 export async function POST(req: Request) {
   let task = "";
   try {
