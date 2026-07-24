@@ -24,6 +24,13 @@ Verify it is reachable logged out:
 curl -s "https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=<ID>&format=json" | head -c 200
 ```
 
+## Step 1b: gallery screenshots (30 seconds)
+
+Four screenshots are on your desktop too (`01-` through `04-`), captured from the live
+deploy. Three are real Daytona runs and print the sandbox id they measured in. Captions,
+already under Devpost's 140-character limit, are in
+[`SCREENSHOT_CAPTIONS.md`](SCREENSHOT_CAPTIONS.md). Upload them in numbered order.
+
 ## Step 2: create the Devpost project and paste
 
 Devpost's "Create project" is invisible-reCAPTCHA gated and re-challenges every automated
